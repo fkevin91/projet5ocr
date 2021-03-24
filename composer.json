@@ -1,0 +1,10 @@
+{
+    "name": "utilisateur/projet5ocr",
+    "authors": [
+        {
+            "name": "kevin fardeau",
+            "email": "k.fardeau123@gmail.com"
+        }
+    ],
+    "require": {}
+}
