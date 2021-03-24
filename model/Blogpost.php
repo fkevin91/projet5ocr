@@ -1,16 +1,27 @@
 <?php
 class Blogpost {
   // Properties
-  public $titre;
-  public $chapo;
-  public $contenu;
-  public $auteur;
-  public $date;
-  public $photo_url;
+  private $titre;
+  private $chapo;
+  private $contenu;
+  private $auteur;
+  private $date;
+  private $photo_url;
 
   // Methods
-
-  function __construct($titre, $chapo, $contenu, $auteur, $date, $photo_url) {
+  
+  /**
+   * __construct
+   *
+   * @param  string $titre
+   * @param  string $chapo
+   * @param  string $contenu
+   * @param  string $auteur
+   * @param  string $date
+   * @param  string $photo_url
+   * @return void
+   */
+  public function __construct($titre, $chapo, $contenu, $auteur, $date, $photo_url) {
     $this->titre = $titre;
     $this->chapo = $chapo;
     $this->contenu = $contenu;
@@ -18,27 +29,57 @@ class Blogpost {
     $this->date = $date;
     $this->photo_url = $photo_url;
   }
-
-  function get_titre() {
+  
+  /**
+   * get_titre
+   *
+   * @return titre du blogpost
+   */
+  public function get_titre() {
     return $this->titre;
   }
-
-  function get_chapo() {
+  
+  /**
+   * get_chapo
+   *
+   * @return chapo du blogpost
+   */
+  public function get_chapo() {
     return $this->chapo;
   }
-
-  function get_contenu() {
+  
+  /**
+   * get_contenu
+   *
+   * @return contenu du blogpost
+   */
+  public function get_contenu() {
     return $this->contenu;
   }
-
-  function get_auteur() {
+  
+  /**
+   * get_auteur
+   *
+   * @return auteur du blogpost
+   */
+  public function get_auteur() {
     return $this->auteur;
   }
-
-  function get_date() {
+  
+  /**
+   * get_date
+   *
+   * @return date du blogpost
+   */
+  public function get_date() {
     return $this->date;
   }
-
+  
+  /**
+   * get_photo_url
+   *
+   * @return chemin d'acces de la photo du blogpost
+   */
   function get_photo_url() {
     return $this->photo_url;
   }

@@ -1,35 +1,66 @@
 <?php
+
 class User {
   // Properties
-  public $pseudo;
-  public $name;
-  public $firstName;
-  public $mail;
-  public $password;
+  private $pseudo;
+  private $name;
+  private $firstName;
+  private $mail;
+  private $password;
 
   // Methods
-
-  function __construct($pseudo, $name, $firstName, $mail, $password) {
+  
+  /**
+   * __construct
+   *
+   * @param  string $pseudo
+   * @param  string $name
+   * @param  string $firstName
+   * @param  string $mail
+   * @param  string $password
+   * @return void
+   */
+  public function __construct($pseudo, $name, $firstName, $mail, $password) {
     $this->pseudo = $pseudo;
     $this->name = $name;
     $this->firstName = $firstName;
     $this->mail = $mail;
-    $this->password = $password;
+    $this->password = sha1($password);
   }
-
-  function get_pseudo() {
+  
+  /**
+   * get_pseudo
+   *
+   * @return pseudo utilitateur
+   */
+  public function get_pseudo() {
     return $this->pseudo;
   }
-
-  function get_name() {
+  
+  /**
+   * get_name
+   *
+   * @return nom utilisateur
+   */
+  public function get_name() {
     return $this->name;
   }
-
-  function get_firstName() {
+  
+  /**
+   * get_firstName
+   *
+   * @return prenom utilisateur
+   */
+  public function get_firstName() {
     return $this->firstName;
   }
-
-  function get_mail() {
+  
+  /**
+   * get_mail
+   *
+   * @return mail utilisateur
+   */
+  public function get_mail() {
     return $this->mail;
   }
   
