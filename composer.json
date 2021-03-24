@@ -6,5 +6,7 @@
             "email": "k.fardeau123@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "twbs/bootstrap": "^4.6"
+    }
 }
