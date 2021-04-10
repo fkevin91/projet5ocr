@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block title %} Post {% endblock %}
+{% block body %}
+
+Voici un posts !!!
+
+    <div class="container">
+        <div class="d-flex summary">
+            <img class="summary-image img-suqare img-responsive pull-right" alt="Bootstrap template" src="http://placehold.it/500x500">
+            <div class="p-4">
+
+                <h2 class="summary-heading"> ***titre*** </h2>
+                <p class="lead">
+                    It is a long established fact that a reader will be distracted by the readable content 
+                    of a page when looking at its layout. The point of using Lorem Ipsum is that it has a 
+                    more-or-less normal distribution of letters, as opposed to using 'Content here, content here', 
+                    making it look like readable English. Many desktop publishing packages and web page editors now 
+                    use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web 
+                    sites still in their infancy. Various versions have evolved over the years, sometimes by accident, 
+                    sometimes on purpose (injected humour and the like).
+                </p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascript %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+{% endblock %}
