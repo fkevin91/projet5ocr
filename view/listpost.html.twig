@@ -2,31 +2,35 @@
 {% block title %} Liste des pots {% endblock %}
 {% block body %}
 
-Voici la liste des posts !!!
+<div>
+    <h3 class="p-3">Articles Publiés</h3>
+</div>
 
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
-    <div class="container">
-        <div class="well">
-            <div class="media">
-                <a class="pull-left" href="#">
-                    <img class="media-object" src="http://placekitten.com/150/150">
-                </a>
-                <div class="media-body">
-                    <h4 class="media-heading"> *** titre***</h4>
-                    <p class="text-right"> ***autheur***</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-                        Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
-                        dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
-                        Aliquam in felis sit amet augue.</p>
-                        <ul class="list-inline list-unstyled">
-                            <li><span><i class="glyphicon glyphicon-calendar"></i> Date a rajouter </span></li>
-                            <li>|</li>
-                            <span><i class="glyphicon glyphicon-comment"></i> ***nombre de*** commentaires</span>
-                        </ul>
+<div class="container">
+    <div class="row g-4">
+        {% for infoPost in listpost %}
+            <a class="text-decoration-none text-dark col-6" href="post?idblogpost={{infoPost.idblogpost}}">
+                <div class="container p-1 border shadow rounded" style="background-color: #C2C4CC;">
+                    <div class="well">
+                        <div class="media d-flex">
+                            <div class="p-3">
+                            <img class="media-object" src="{{infoPost.photo_url}}" width="150px" height="150px">
+                            </div>
+                            <div class="media-body w-50">
+                                <h4 class="media-heading"> {{infoPost.titre}} </h4>
+                                <!-- contenu hidden
+                                <p>{{infoPost.contenu}}</p>
+                                -->
+                                <p>{{infoPost.date_creation}}</p> 
+                                <p>Autheur n° {{infoPost.user_iduser}} | x commentaires</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </a>
+        {% endfor %}
     </div>
+</div>
 
 {% endblock %}
 {% block javascript %}

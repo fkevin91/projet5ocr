@@ -1,6 +1,10 @@
 <?php
 
 use Twig\Environment;
+include '../vendor/autoload.php';
+// on inclus le modele
+include '../model/model.php';
+// On instancie une connexion
 
 class ListPostController {
 
@@ -11,8 +15,17 @@ class ListPostController {
     }
 
     public function displayListPost() {
-
-        echo $this->twig->render('listpost.html.twig', ['name' => 'Kévin']);
-
+        try {
+            $template = $this->twig->load('listpost.html.twig');
+            $affichageListPost = new connectionBDD();
+            $listpost = $affichageListPost->get_all_post();
+            $titre = "listPost";
+            echo $template->render(array(
+                'titre' => $titre,
+                'listpost' => $listpost,
+            ));
+        } catch (Exception $e) {
+            die ('ERROR: ' . $e->getMessage());
+        }
     }
 }
