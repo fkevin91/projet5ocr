@@ -25,7 +25,7 @@ class connectionBDD {
         $stmt=self::$connexion->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
 
@@ -43,7 +43,7 @@ class connectionBDD {
         $stmt=self::$connexion->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
     /** Ajoute un post à la table blogpost */
     function add_post($data){

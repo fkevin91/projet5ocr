@@ -29,12 +29,12 @@ if (in_array($post, $arrayPage)) {
     //appelle de la fonction "allPost()" qui rend la page html.twig
     switch ($post) {
         case 'post':
-            //if (isset($_GET['id']) && $_GET['id'] > 0) {
-                $controller->displayPost();
-            //}
-            //else {
-                //echo 'Erreur : aucun identifiant de billet envoyé';
-            //}
+            if (isset($_GET['idblogpost']) && $_GET['idblogpost'] >= 0) {
+                $controller->displayPost($_GET['idblogpost']);
+            }
+            else {
+                echo 'Erreur : aucun identifiant de billet envoyé';
+            }
             break;
         case 'home':
             $controller->displayHome();
@@ -44,6 +44,9 @@ if (in_array($post, $arrayPage)) {
             break;        
         case 'listpost':
             $controller->displayListPost();
+            break;        
+        case 'contact':
+            $controller->displayContact();
             break;
     }
 }

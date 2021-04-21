@@ -44,8 +44,42 @@
         </style>
     {% endblock %}
 </head>
-<body>
+<body class="bg-light">
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark  bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="home"> PROJET 5 Fkévin</a>
+      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item active">
+            <a class="nav-link" aria-current="page" href="home">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="listpost">Articles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Se connecter</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">S'inscrire</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</header>
         {% block body %}{% endblock %}
+
+<!-- FOOTER -->
+<footer class="container">
+
+  <p>&copy; 2021 &middot; <p>Projet n° 5 pour le parcours de Développeur d'application Symfony</p>
+</footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     {% block javescript %}{% endblock %}
 </body>
