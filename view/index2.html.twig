@@ -17,16 +17,14 @@
     <td>Ville</td>
     <td>Ville</td>
 </tr>
-{% for info in infoAccueils %}
-    <tr>
-    <td>{{info.idinfAccueil}}</td>
-    <td>{{info.nom}}</td>
-    <td>{{info.prenom}}</td>
-    <td>{{info.phrase_accroche}}</td>
-    <td>{{info.github}}</td>
-    <td>{{info.twitter}}</td>
-    <td>{{info.linkedin}}</td>
-</tr>
+{% for infoPost in post %}
+    
+    {{infoPost.titre}}
+    {{infoPost.contenu}}
+    {{infoPost.date_creation}}
+    {{infoPost.iduser}}
+    {{infoPost.photo_url}}
+
 {% endfor %}
 </table>
 {% endblock %}

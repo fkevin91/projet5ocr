@@ -21,7 +21,7 @@ class HomeController{
             //$twig = new Twig\Environment($loader);
         
             // load template
-            $template = $this->twig->load('index2.html.twig');
+            $template = $this->twig->load('index.html.twig');
         
             // on va instancier le modele
             // et préparer les variables

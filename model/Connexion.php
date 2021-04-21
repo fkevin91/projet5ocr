@@ -12,7 +12,7 @@ class Connexion
     private function connectionBDD()
     {
         try{
-            $connexion = new PDO('mysql:host=localhost;dbname=' . $this->db_name, $this->usernamedb, $this->passdb, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
+            $connexion = new PDO('mysql:host=localhost;dbname=' . $this->db_name, $this->usernamedb, $this->passdb, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8mb4\''));
             return true;
         }catch(PDOException $e){
             die('Erreur : '.$e->getMessage());
