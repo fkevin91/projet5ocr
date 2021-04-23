@@ -15,7 +15,7 @@ class ListPostController {
     }
 
     public function displayListPost() {
-        try {
+        //try {
             $template = $this->twig->load('listpost.html.twig');
             $affichageListPost = new connectionBDD();
             $listpost = $affichageListPost->get_all_post();
@@ -24,8 +24,8 @@ class ListPostController {
                 'titre' => $titre,
                 'listpost' => $listpost,
             ));
-        } catch (Exception $e) {
-            die ('ERROR: ' . $e->getMessage());
-        }
+        //} catch (Exception $e) {
+            //die ('ERROR: ' . $e->getMessage());
+        //}
     }
 }

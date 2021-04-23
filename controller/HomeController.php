@@ -3,8 +3,6 @@ use Twig\Environment;
 include '../vendor/autoload.php';
 // on inclus le modele
 include '../model/model.php';
-// On instancie une connexion
-$connect = new connectionBDD();
 
 class HomeController{
     private $twig;
@@ -35,6 +33,7 @@ class HomeController{
                 echo $template->render(array(
                     'titre' => $titre,
                     'infoAccueils' => $infoAccueils,
+                    'post' => $_POST
                 ));
                 
             }else{
@@ -57,4 +56,5 @@ class HomeController{
             die ('ERROR: ' . $e->getMessage());
         }
     }
+
 }
