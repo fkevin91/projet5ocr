@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block title %} Connexion {% endblock %}
+{% block body %}
+<div class="container col-6 g-5">
+    <form class="border border-dark p-3 m-5" action="../public/form" method="post">
+
+        <!-- Email input -->
+        <div class="form-outline m-4">
+            <label class="form-label" for="form4Example2">Adresse mail : </label>
+            <input type="email" id="form4Example2" name="mail" class="form-control" />
+        </div>
+
+        <!-- Name input -->
+        <div class="form-outline m-4">
+            <label class="form-label pt-5" for="form4Example1">Mot de passe : </label>
+            <input type="password" id="form4Example1" name="password" class="form-control" />
+        </div>
+
+        <input type="hidden" name="formulaire" value="log">
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block m-4">Send</button>
+    </form>
+</div>
+{% endblock %}
+{% block javascript %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+{% endblock %}

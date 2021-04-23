@@ -1,8 +1,26 @@
 <?php
 require_once '../vendor/autoload.php';
-
+session_start();
+//var_dump($_SESSION);
 //creation d'un tableau des routes
-$arrayPage = array('post', 'home', 'cv', 'listpost', 'contact');
+$arrayPage = array(
+    'post', 
+    'home', 
+    'listpost', 
+    'contact', 
+    'log',
+    'registration', 
+    'form',
+    'homeback',
+);
+
+$arrayPageSecure = array(
+    'homeback',
+    'homebackAdd',
+    'homebackList',
+    'homebackUpdate',
+    'homebackCommentValid',
+);
 
 
 $loader = new \Twig\Loader\FilesystemLoader('../view');
@@ -33,20 +51,66 @@ if (in_array($post, $arrayPage)) {
                 $controller->displayPost($_GET['idblogpost']);
             }
             else {
-                echo 'Erreur : aucun identifiant de billet envoyé';
+                echo 'Erreur : aucun id reconnu';
             }
             break;
         case 'home':
-            $controller->displayHome();
-            break;
-        case 'cv':
-            $controller->displayCV();
-            break;        
+            if (!empty($_GET['log']) && $_GET['log'] == 'false') {
+                session_destroy();
+                $controller->displayHome();
+            }
+            else {
+                $controller->displayHome();
+            }
+            break;       
         case 'listpost':
             $controller->displayListPost();
             break;        
         case 'contact':
             $controller->displayContact();
+            break;
+        case 'log':
+            $controller->displayLog();
+            break;
+        case 'registration':
+            $controller->displayRegistration();
+            break;
+        case 'form':
+            if (!empty($_POST['formulaire'])){
+                $controller->recuperation_du_formulaire();
+            }else{
+                header('location:../public/home');
+            }
+            break;
+        case 'homeback':
+            if(!empty($_SESSION['Auth']['login']) && !empty($_SESSION['Auth']['pass'])){
+                if (!empty($_GET['back']) && in_array($_GET['back'], $arrayPageSecure)) {
+                    $back = $_GET['back'];
+                    switch ($back) {
+                        case 'homeback':
+                            $controller->displayHomeBack();
+                            break;
+                        case 'homebackAdd':
+                            $controller->displayBackAddPost();
+                            break;
+                        case 'homebackList':
+                            $controller->displayBackListPost();
+                            break;
+                        case 'homebackUpdate':
+                                $controller->displayBackUpdatePost();
+                            break;
+                        case 'homebackCommentValid':
+                            // a faire !!!!
+                            $controller->displayHomeBack();
+                            break;
+                    }
+                }
+                else {
+                    header('location:../public/home');
+                }
+            }else{
+                header('location:../public/home');
+            }
             break;
     }
 }
