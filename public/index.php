@@ -39,7 +39,7 @@ if (in_array($post, $arrayPage)) {
     //recupération de l'url et on y ajoute le nom controller
     $className = ucfirst($post) . 'Controller';
     //on appelle le controller correspondant
-    include_once '../controller/'  . $className . '.php';
+    include '../controller/'  . $className . '.php';
     //on prend le loader
     $twig = new \Twig\Environment($loader);
     //création de l'objet "controller"

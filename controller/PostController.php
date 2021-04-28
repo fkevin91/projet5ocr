@@ -3,7 +3,8 @@
 use Twig\Environment;
 include '../vendor/autoload.php';
 // on inclus le modele
-include '../model/model.php';
+include '../model/Model.php';
+include '../model/Article.php';
 // On instancie une connexion
 
 class PostController {
@@ -17,7 +18,7 @@ class PostController {
     public function displayPost($id) {
         try {
             $template = $this->twig->load('post.html.twig');
-            $affichagePost = new connectionBDD();
+            $affichagePost = new Article();
             $post = $affichagePost->get_post_by_id($id);
             $titre = "Post";
             if (!empty($post)){

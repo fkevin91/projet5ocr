@@ -3,7 +3,8 @@
 use Twig\Environment;
 include '../vendor/autoload.php';
 // on inclus le modele
-include '../model/model.php';
+include '../model/Model.php';
+include '../model/Article.php';
 // On instancie une connexion
 
 class ListPostController {
@@ -17,7 +18,7 @@ class ListPostController {
     public function displayListPost() {
         //try {
             $template = $this->twig->load('listpost.html.twig');
-            $affichageListPost = new connectionBDD();
+            $affichageListPost = new Article();
             $listpost = $affichageListPost->get_all_post();
             $titre = "listPost";
             echo $template->render(array(

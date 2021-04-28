@@ -2,7 +2,8 @@
 use Twig\Environment;
 include '../vendor/autoload.php';
 // on inclus le modele
-include '../model/model.php';
+include '../model/Model.php';
+include '../model/Accueil.php';
 
 class HomeController{
     private $twig;
@@ -25,7 +26,7 @@ class HomeController{
             // et préparer les variables
             // qu'on va passer au template
             //require_once("../model/modele.php");
-            $home = new connectionBDD();
+            $home = new Accueil();
             $infoAccueils = $home->get_home_by_id(0);
             $titre = "Accueil";
             // render template

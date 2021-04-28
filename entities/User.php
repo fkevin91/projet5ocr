@@ -20,12 +20,12 @@ class User {
    * @param  string $password
    * @return void
    */
-  public function __construct($pseudo, $name, $firstName, $mail, $password) {
+  public function set_user($pseudo, $name, $firstName, $mail, $password) {
     $this->pseudo = $pseudo;
     $this->name = $name;
     $this->firstName = $firstName;
     $this->mail = $mail;
-    $this->password = sha1($password);
+    $this->password = $password;
   }
   
   /**
@@ -64,4 +64,18 @@ class User {
     return $this->mail;
   }
   
+  public function connect($pseudo, $password) {
+    $a = new Utilisateur;
+    $r= $a->connect_user($pseudo, $password);
+    if($r){
+      $this->set_user($r['pseudo'], $r['name'], $r['firstName'], $r['mail'], $r['password']);
+      $_SESSION['Auth'] = array(
+          'login' => $pseudo,
+          'pass' => $password,
+          'role' => ''
+      );
+    }else{
+      
+    }
+  }
 }

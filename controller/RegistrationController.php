@@ -3,7 +3,8 @@
 use Twig\Environment;
 include '../vendor/autoload.php';
 // on inclus le modele
-include '../model/model.php';
+include '../model/Model.php';
+include '../model/Utilisateur.php';
 // On instancie une connexion
 
 class RegistrationController {
