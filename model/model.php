@@ -44,26 +44,27 @@ class connectionBDD {
                 ':nom' => $nom,
                 ':prenom' =>  $prenom,
                 ':mail' => $mail,
-                ':password' =>  sha1($password.$mail),
+                ':password' => sha1($password),
             ]
         );
     }
 
     /** validation connexion */
 
-    function connect_user($mail, $password){
-        $password = sha1($password.$mail);
-        $sql = "SELECT * FROM user WHERE mail = :mail AND password = :pass";
+    function connect_user($pseudo, $password){
+        $password = sha1($password);
+        $sql = "SELECT * FROM user WHERE pseudo = :pseudo AND password = :pass";
         $stmt=self::$connexion->prepare($sql);
-        $stmt->bindParam(':mail', $mail);
+        $stmt->bindParam(':pseudo', $pseudo);
         $stmt->bindParam(':pass', $password);
         $stmt->execute();
-        $resultat = $stmt->fetchObject();
+        $resultat = $stmt->fetchAll(PDO::FETCH_OBJ);
         if($resultat){
             $_SESSION['Auth'] = array(
-                'login' => $mail,
+                'login' => $pseudo,
                 'pass' => $password,
                 'role' => ''
+
             );
             return true;
         }
@@ -88,11 +89,41 @@ class connectionBDD {
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
     /** Ajoute un post à la table blogpost */
-    function add_post($data){
-        $sql = "INSERT INTO blogpost(titre,contenu,photo_url,date_creation,user_iduser) values (?,?,?,?,?)";
-        $stmt = self::$connexion->prepare($sql);
-        return $stmt->execute(array($data['nom'],
-            $data['prenom'], $data['naissance'],$data['ville']));
+    function add_post($titre, $contenu, $photo_url, $date_creation, $user_iduser){
+        $sql = "INSERT INTO blogpost(idblogpost, titre, contenu,photo_url,date_creation,user_iduser) 
+            VALUES (NULL, :titre, :contenu, :photo_url, :date_creation, :user_iduser)";
+        $stmt=self::$connexion->prepare($sql);
+        $stmt->execute(
+        [
+            ':titre' => $titre,
+            ':contenu' => $contenu,
+            ':photo_url' =>  $photo_url,
+            ':date_creation' => $date_creation,
+            ':user_iduser' =>  $user_iduser,
+        ]
+    );
+    }    
+    
+    /** Mettre a jour un post à la table blogpost */
+    function update_post($titre, $contenu, $photo_url, $date_creation, $user_iduser, $idblogpost){
+        $sql = "UPDATE blogpost
+            SET titre = :titre, 
+            contenu = :contenu, 
+            photo_url = :photo_url, 
+            date_creation = :date_creation, 
+            user_iduser = :user_iduser
+            WHERE idblogpost = :idblogpost";
+        $stmt=self::$connexion->prepare($sql);
+        $stmt->execute(
+        [
+            ':titre' => $titre,
+            ':contenu' => $contenu,
+            ':photo_url' =>  $photo_url,
+            ':date_creation' => $date_creation,
+            ':user_iduser' =>  $user_iduser,
+            ':idblogpost' =>  $idblogpost,
+        ]
+    );
     }
 
 

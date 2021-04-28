@@ -8,7 +8,7 @@
         <img src="" alt="">
     </div>
     <div class="col-6 row gap-4">
-        <form>
+        <form action="../public/form" method="post">
             <!-- titre input -->
             <div class="form-outline mb-4">
                 <label class="form-label pt-5" for="form4Example1">Titre :</label>
@@ -26,6 +26,9 @@
                 <label class="form-label" for="form4Example2">Ajouter une photo : </label>
                 <input type="file" id="form4Example2" class="form-control" />
             </div>
+
+            <input type="hidden" name="formulaire" value="updatePost">
+
 
             <!-- Submit button -->
             <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>

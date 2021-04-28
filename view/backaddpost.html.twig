@@ -8,24 +8,28 @@
         <img src="" alt="">
     </div>
     <div class="col-6 row gap-4">
-        <form>
+        <form action="../public/form" method="post">
             <!-- titre input -->
             <div class="form-outline mb-4">
                 <label class="form-label pt-5" for="form4Example1">Titre :</label>
-                <input type="text" id="form4Example1" class="form-control" />
+                <input type="text" name="titre" id="form4Example1" class="form-control" />
             </div>
 
             <!-- contenu input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="form4Example3">Contenu : </label>
-                <textarea class="form-control" id="form4Example3" rows="4"></textarea>
+                <textarea class="form-control" name="contenu" id="form4Example3" rows="4"></textarea>
             </div>
 
             <!-- photo input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="form4Example2">Ajouter une photo : </label>
-                <input type="file" id="form4Example2" class="form-control" />
+                <input type="file" name="photo_url" id="form4Example2" class="form-control" />
             </div>
+
+            <input type="hidden" name="formulaire" value="addPost">
+
+
 
             <!-- Submit button -->
             <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
