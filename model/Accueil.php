@@ -1,4 +1,5 @@
 <?php
+namespace App\models;
 
 class Accueil extends Model{
 
@@ -7,9 +8,9 @@ class Accueil extends Model{
     {
         $sql="SELECT * from infaccueil where idinfAccueil=:id";
         $stmt=self::$connexion->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $stmt->fetchAll(\PDO::FETCH_OBJ);
     }
 
 }

@@ -1,7 +1,8 @@
 <?php
 
+namespace App\models;
 
-class Utilisateur extends Model{
+class User extends Model{
 
         /** Ajouter un utilisateur */
         function create($pseudo, $nom, $prenom, $mail, $password){
@@ -21,14 +22,15 @@ class Utilisateur extends Model{
     
         /** validation connexion */
     
-        function connect_user($pseudo, $password){
+        function check($pseudo, $password){
             $password = sha1($password);
             $sql = "SELECT * FROM user WHERE pseudo = :pseudo AND password = :pass";
             $stmt=self::$connexion->prepare($sql);
             $stmt->bindParam(':pseudo', $pseudo);
             $stmt->bindParam(':pass', $password);
             $stmt->execute();
-            $resultat = $stmt->fetchAll(PDO::FETCH_OBJ);
+            $resultat = $stmt->fetchAll(\PDO::FETCH_OBJ);
+
             if($resultat){
                 return true;
             }
@@ -43,7 +45,7 @@ class Utilisateur extends Model{
             $stmt->bindParam(':pseudo', $pseudo);
             $stmt->bindParam(':pass', $password);
             $stmt->execute();
-            $resultat = $stmt->fetchAll(PDO::FETCH_OBJ);
+            $resultat = $stmt->fetchAll(\PDO::FETCH_OBJ);
 
             if($resultat){
                 $_SESSION['Auth'] = array(

@@ -1,5 +1,7 @@
 <?php
-class Blogpost {
+namespace App\Entities;
+
+class Post {
   // Properties
   private $titre;
   private $chapo;
@@ -21,15 +23,43 @@ class Blogpost {
    * @param  string $photo_url
    * @return void
    */
-  public function __construct($titre, $chapo, $contenu, $auteur, $date, $photo_url) {
+  public function __construct($titre, $contenu, $photo_url, $date, $auteur) {
+
     $this->titre = $titre;
-    $this->chapo = $chapo;
     $this->contenu = $contenu;
     $this->auteur = $auteur;
     $this->date = $date;
     $this->photo_url = $photo_url;
   }
   
+  /**
+   * set_blogpost
+   *
+   */
+  public function set_blogpost() {
+    $a = new \App\models\Article();
+    $a->create(
+      $this->get_titre(),
+      $this->get_contenu(),
+      $this->get_photo_url(),
+      $this->get_date(),
+      $this->get_auteur()
+    );
+  }
+
+
+  /**
+   * update_blogpost
+   *
+   */
+  public function update_blogpost($idblogpost) {
+    $a = new \App\models\Article();
+    $a->update($this->get_titre(),$this->get_contenu(),$this->get_photo_url(),$this->get_date(),$this->get_auteur(), $idblogpost);
+
+  }
+
+
+
   /**
    * get_titre
    *

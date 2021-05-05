@@ -1,4 +1,5 @@
 <?php
+namespace App\models;
 
 class Article extends Model{
 
@@ -13,9 +14,9 @@ class Article extends Model{
         {
             $sql="SELECT * from blogpost where idblogpost=:id";
             $stmt=self::$connexion->prepare($sql);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_OBJ);
+            return $stmt->fetchAll(\PDO::FETCH_OBJ);
         }
         /** Ajoute un post à la table blogpost */
         function create($titre, $contenu, $photo_url, $date_creation, $user_iduser){
@@ -34,7 +35,7 @@ class Article extends Model{
         }    
         
         /** Mettre a jour un post à la table blogpost */
-        function update_post($titre, $contenu, $photo_url, $date_creation, $user_iduser, $idblogpost){
+        function update($titre, $contenu, $photo_url, $date_creation, $user_iduser, $idblogpost){
             $sql = "UPDATE blogpost
                 SET titre = :titre, 
                 contenu = :contenu, 

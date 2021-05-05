@@ -18,7 +18,7 @@ class ListPostController {
     public function displayListPost() {
         //try {
             $template = $this->twig->load('listpost.html.twig');
-            $affichageListPost = new Article();
+            $affichageListPost = new App\models\Article();
             $listpost = $affichageListPost->get_all_post();
             $titre = "listPost";
             echo $template->render(array(

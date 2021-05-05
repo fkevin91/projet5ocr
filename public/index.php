@@ -1,7 +1,7 @@
 <?php
 require_once '../vendor/autoload.php';
 session_start();
-//var_dump($_SESSION);
+var_dump($_SESSION);
 //creation d'un tableau des routes
 $arrayPage = array(
     'post', 
@@ -77,7 +77,7 @@ if (in_array($post, $arrayPage)) {
             break;
         case 'form':
             if (!empty($_POST['formulaire'])){
-                $controller->recuperation_du_formulaire();
+                $controller->recuperation_du_formulaire($_POST, $_SESSION);
             }else{
                 header('location:../public/home');
             }

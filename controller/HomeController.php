@@ -26,7 +26,7 @@ class HomeController{
             // et préparer les variables
             // qu'on va passer au template
             //require_once("../model/modele.php");
-            $home = new Accueil();
+            $home = new App\models\Accueil();
             $infoAccueils = $home->get_home_by_id(0);
             $titre = "Accueil";
             // render template

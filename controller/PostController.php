@@ -18,7 +18,7 @@ class PostController {
     public function displayPost($id) {
         try {
             $template = $this->twig->load('post.html.twig');
-            $affichagePost = new Article();
+            $affichagePost = new App\models\Article();
             $post = $affichagePost->get_post_by_id($id);
             $titre = "Post";
             if (!empty($post)){

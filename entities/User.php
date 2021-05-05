@@ -1,10 +1,13 @@
 <?php
 
+namespace App\Entities;
+
 class User {
   // Properties
+  private $id;
   private $pseudo;
-  private $name;
-  private $firstName;
+  private $nom;
+  private $prenom;
   private $mail;
   private $password;
 
@@ -14,20 +17,29 @@ class User {
    * __construct
    *
    * @param  string $pseudo
-   * @param  string $name
-   * @param  string $firstName
+   * @param  string $nom
+   * @param  string $prenom
    * @param  string $mail
    * @param  string $password
    * @return void
    */
-  public function set_user($pseudo, $name, $firstName, $mail, $password) {
+  public function create($id, $pseudo, $nom, $prenom, $mail, $password) {
+    $this->id = $id;
     $this->pseudo = $pseudo;
-    $this->name = $name;
-    $this->firstName = $firstName;
+    $this->nom = $nom;
+    $this->prenom = $prenom;
     $this->mail = $mail;
     $this->password = $password;
   }
   
+  /**
+   * get_id
+   *
+   * @return id utilitateur
+   */
+  public function get_id() {
+    return $this->id;
+  }
   /**
    * get_pseudo
    *
@@ -38,21 +50,21 @@ class User {
   }
   
   /**
-   * get_name
+   * get_nom
    *
    * @return nom utilisateur
    */
-  public function get_name() {
-    return $this->name;
+  public function get_nom() {
+    return $this->nom;
   }
   
   /**
-   * get_firstName
+   * get_prenom
    *
    * @return prenom utilisateur
    */
-  public function get_firstName() {
-    return $this->firstName;
+  public function get_prenom() {
+    return $this->prenom;
   }
   
   /**
@@ -64,18 +76,20 @@ class User {
     return $this->mail;
   }
   
-  public function connect($pseudo, $password) {
-    $a = new Utilisateur;
-    $r= $a->connect_user($pseudo, $password);
+  public function check($pseudo, $password) {
+    $a = new \App\models\User;
+    $r= $a->check($pseudo, $password);
     if($r){
-      $this->set_user($r['pseudo'], $r['name'], $r['firstName'], $r['mail'], $r['password']);
+      $this->create($r['iduser'],$r['pseudo'], $r['nom'], $r['prenom'], $r['mail'], $r['password']);
       $_SESSION['Auth'] = array(
-          'login' => $pseudo,
-          'pass' => $password,
+          'login' => $r['pseudo'],//$this->get_pseudo(),
+          'pass' => $r['password'],
+          'id' => $r['iduser'],//$this->get_id() ,
           'role' => ''
       );
+      return true;
     }else{
-      
+      return true;
     }
   }
 }
