@@ -6,10 +6,8 @@ var_dump($_SESSION);
 $arrayPage = array(
     'post', 
     'home', 
-    'listpost', 
     'contact', 
-    'log',
-    'registration', 
+    'user',
     'form',
     'homeback',
 );
@@ -51,7 +49,7 @@ if (in_array($post, $arrayPage)) {
                 $controller->displayPost($_GET['idblogpost']);
             }
             else {
-                echo 'Erreur : aucun id reconnu';
+                $controller->displayListPost();
             }
             break;
         case 'home':
@@ -63,21 +61,20 @@ if (in_array($post, $arrayPage)) {
                 $controller->displayHome();
             }
             break;       
-        case 'listpost':
-            $controller->displayListPost();
-            break;        
         case 'contact':
             $controller->displayContact();
             break;
-        case 'log':
-            $controller->displayLog();
-            break;
-        case 'registration':
-            $controller->displayRegistration();
+        case 'user':
+            if (isset($_GET['user']) && $_GET['user'] == 1) {
+                $controller->displayLog();
+            }
+            if (isset($_GET['user']) && $_GET['user'] == 2) {
+                $controller->displayRegistration();
+            }
             break;
         case 'form':
             if (!empty($_POST['formulaire'])){
-                $controller->recuperation_du_formulaire($_POST, $_SESSION);
+                $controller->recuperation_du_formulaire($_POST);
             }else{
                 header('location:../public/home');
             }

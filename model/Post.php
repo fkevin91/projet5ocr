@@ -1,16 +1,16 @@
 <?php
 namespace App\models;
 
-class Article extends Model{
+class Post extends Model{
 
         /** Récupére la liste des posts sous forme d'un tableau */
-        function get_all_post(){
+        function all(){
             $sql="SELECT * from blogpost";
             $data=self::$connexion->query($sql);
             return $data;
         }
         /** Récupére un post à partir de son ID */
-        function get_post_by_id($id)
+        function show($id)
         {
             $sql="SELECT * from blogpost where idblogpost=:id";
             $stmt=self::$connexion->prepare($sql);

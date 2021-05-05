@@ -3,12 +3,10 @@
 {% block body %}
 
 
-{% for info in infoAccueils %}
 
 
 <main class="w-100">
 
-    <!-- Carroussel de présentation -->
   <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
     <ol class="carousel-indicators">
       <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
@@ -23,8 +21,8 @@
         <div class="container">
           <div class="carousel-caption text-start">
             <h1>Présentation</h1>
-            <p>{{info.phrase_accroche}}</p>
-            <p class="badge bg-primary"> {{info.nom}} {{info.prenom}} </p>
+            <p>Alternant qui découvre chaque jour un peu plus le métier de développeur</p>
+            <p class="badge bg-primary"> Fardeau Kévin </p>
           </div>
         </div>
       </div>
@@ -45,9 +43,9 @@
         </div>
         <div class="container">
           <div class="carousel-caption">
-            <a href="{{info.github}}"><img class="" src="../view/github.png" alt="" width="20%" height="20%"></a>
-            <a href="{{info.twitter}}"><img class="" src="../view/twitter.png" alt="" width="20%" height="20%"></a>
-            <a href="{{info.linkedin}}"><img class="" src="../view/linkedIn.png" alt="" width="20%" height="20%"></a>
+            <a href="http://github.com/fkevin91/"><img class="" src="../view/github.png" alt="" width="20%" height="20%"></a>
+            <a href="#"><img class="" src="../view/twitter.png" alt="" width="20%" height="20%"></a>
+            <a href="https://linkedin.com/in/fardeaukevin"><img class="" src="../view/linkedIn.png" alt="" width="20%" height="20%"></a>
           </div>
         </div>
       </div>
@@ -62,11 +60,9 @@
     </a>
   </div>
 
-  <!-- switch site -->
 
   <div class="container marketing">
 
-    <!-- Three columns of text below the carousel -->
     <div class="row p-5">
       <div class="col-lg-4 text-center">
         <svg version="1.1" id="fi_85575"  class="bd-placeholder-img " xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="140" height="140" viewBox="0 0 487.867 487.867" style="enable-background:new 0 0 487.867 487.867;" xml:space="preserve">
@@ -92,8 +88,8 @@
         </svg>
         <h2>ARTICLES</h2>
         <p>Vous trouverez ici tout <br>les articles de mon blog. </p>
-        <p><a class="btn btn-secondary" href="listpost" role="button">Feuilleter le journal &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
+        <p><a class="btn btn-secondary" href="post" role="button">Feuilleter le journal &raquo;</a></p>
+      </div>
 
       <div class="col-lg-4 text-center">
         <img src="../view/moi.jpg" alt="" class="bd-placeholder-img rounded-circle" width="140" height="140">
@@ -101,16 +97,24 @@
         <h2>CURICULUM VITAE</h2>
         <p>Vous souhaitez connaitre <br>mon parcour, voir mon CV ou <br>même le telecharger ? <br>cliquez juste en dessous !</p>
         <p><a class="btn btn-secondary" target="blank" href="../public/cv.pdf" role="button">En voir plus ! &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
+      </div>
 
       <div class="col-lg-4 text-center">
 
-        <svg class="bd-placeholder-img" height="140" viewBox="-17 -101 560 560" width="140" xmlns="http://www.w3.org/2000/svg" id="fi_1250663"><path d="m462.5-5.582031h-400c-34.511719.011719-62.484375 27.988281-62.5 62.5v233.371093c.015625 34.511719 27.988281 62.492188 62.5 62.5h400c34.511719-.007812 62.484375-27.988281 62.5-62.5v-233.371093c-.015625-34.511719-27.988281-62.488281-62.5-62.5zm-400 25h400c18.003906.046875 33.453125 12.824219 36.875 30.496093l-236.875 132.003907-236.875-132.003907c3.421875-17.671874 18.871094-30.449218 36.875-30.496093zm400 308.25h-400c-20.683594-.0625-37.441406-16.816407-37.5-37.5v-212l231.375 128.996093c1.875 1.03125 3.980469 1.59375 6.125 1.628907 2.152344.023437 4.265625-.539063 6.125-1.628907l231.375-128.996093v212c-.015625 20.703125-16.796875 37.480469-37.5 37.5zm0 0"></path></svg>
+        <svg  class="bd-placeholder-img" 
+              height="140" 
+              viewBox="-17 -101 560 560" 
+              width="140" 
+              xmlns="http://www.w3.org/2000/svg" 
+              id="fi_1250663">
+          <path d="m462.5-5.582031h-400c-34.511719.011719-62.484375 27.988281-62.5 62.5v233.371093c.015625 34.511719 27.988281 62.492188 62.5 62.5h400c34.511719-.007812 62.484375-27.988281 62.5-62.5v-233.371093c-.015625-34.511719-27.988281-62.488281-62.5-62.5zm-400 25h400c18.003906.046875 33.453125 12.824219 36.875 30.496093l-236.875 132.003907-236.875-132.003907c3.421875-17.671874 18.871094-30.449218 36.875-30.496093zm400 308.25h-400c-20.683594-.0625-37.441406-16.816407-37.5-37.5v-212l231.375 128.996093c1.875 1.03125 3.980469 1.59375 6.125 1.628907 2.152344.023437 4.265625-.539063 6.125-1.628907l231.375-128.996093v212c-.015625 20.703125-16.796875 37.480469-37.5 37.5zm0 0">
+          </path>
+        </svg>
         <h2>CONTACT</h2>
         <p>Une question ? Besoin de <br>plus de détail ? N'hésitez <br>plus, contactez moi !</p>
         <p><a class="btn btn-secondary" href="contact" role="button"> Formulaire de contact &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
-    </div><!-- /.row -->
+      </div>
+    </div>
 
 
 
@@ -121,7 +125,6 @@
 
 
 </main>
-{% endfor %}
 {% endblock %}
 {% block javascript %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
