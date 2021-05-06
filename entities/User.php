@@ -17,21 +17,47 @@ class User {
    * __construct
    *
    * @param  string $pseudo
-   * @param  string $nom
-   * @param  string $prenom
-   * @param  string $mail
    * @param  string $password
    * @return void
    */
-  public function create($id, $pseudo, $nom, $prenom, $mail, $password) {
-    $this->id = $id;
+  public function __construct($pseudo, $password) {
     $this->pseudo = $pseudo;
-    $this->nom = $nom;
-    $this->prenom = $prenom;
-    $this->mail = $mail;
     $this->password = $password;
   }
+
+  public function set_nom($nom){
+    $this->nom = $nom;
+  }
+  public function set_prenom($prenom){
+    $this->prenom = $prenom;
+  }
+  public function set_mail($mail){
+    $this->mail = $mail;
+  }
+
   
+  public function create(){
+    $ajout = new \App\models\User;
+    $resultat = $ajout->create(
+      $this->pseudo,
+      $this->nom,
+      $this->prenom,
+      $this->mail,
+      $this->password,
+    );
+    return $resultat;
+  }
+
+  public function check() {
+    $verif = new \App\models\User;
+    $resultat= $verif->check($this->pseudo, $this->password);
+    if(isset($resultat)){
+      return $resultat;
+    }else{
+      return false;
+    }
+  }
+
   /**
    * get_id
    *
@@ -76,20 +102,4 @@ class User {
     return $this->mail;
   }
   
-  public function check($pseudo, $password) {
-    $a = new \App\models\User;
-    $r= $a->check($pseudo, $password);
-    if($r){
-      $this->create($r['iduser'],$r['pseudo'], $r['nom'], $r['prenom'], $r['mail'], $r['password']);
-      $_SESSION['Auth'] = array(
-          'login' => $r['pseudo'],//$this->get_pseudo(),
-          'pass' => $r['password'],
-          'id' => $r['iduser'],//$this->get_id() ,
-          'role' => ''
-      );
-      return true;
-    }else{
-      return true;
-    }
-  }
 }

@@ -1,32 +1,39 @@
 {% extends 'back.html.twig' %}
 {% block title %} Ajouter un article {% endblock %}
 {% block body %}
+{% for infoPost in post %}
+
 <div class="container m-5">
   <div class="row gap-2 justify-content-md-center text-center">
     <div class="col-4 p-5  ">
         <h3 class="fs-3 ">Modifiez votre article</h3>
-        <img src="" alt="">
+        <img src="{{infoPost.photo_url}}" width="250px" height="250px">
     </div>
     <div class="col-6 row gap-4">
         <form action="../public/form" method="post">
             <!-- titre input -->
             <div class="form-outline mb-4">
                 <label class="form-label pt-5" for="form4Example1">Titre :</label>
-                <input type="text" id="form4Example1" class="form-control" />
+                <input type="text" id="form4Example1" class="form-control" name="titre" value="{{infoPost.titre}}" />
             </div>
 
             <!-- contenu input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="form4Example3">Contenu : </label>
-                <textarea class="form-control" id="form4Example3" rows="4"></textarea>
+                <textarea class="form-control" id="form4Example3" rows="4" name="contenu" >{{infoPost.contenu}}</textarea>
             </div>
 
             <!-- photo input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="form4Example2">Ajouter une photo : </label>
-                <input type="file" id="form4Example2" class="form-control" />
+                <input type="file" id="form4Example2" class="form-control" name="photo_url" />
             </div>
-
+            <div class="form-outline mb-4">
+            crée le<input type="text" name="date_creation" value="{{infoPost.date_creation}}" >
+             par l'utilisateur n° <input type="text" name="user_iduser" value="{{infoPost.user_iduser}}">
+            </div>
+            <input type="text" name="idblogpost" value="{{infoPost.idblogpost}}">
+            <input type="text" name="photo" value="{{infoPost.photo_url}}">
             <input type="hidden" name="formulaire" value="updatePost">
 
 
@@ -36,7 +43,7 @@
     </div>
   </div>
 </div>
-
+{% endfor %}
 {% endblock %}
 {% block javascript %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>

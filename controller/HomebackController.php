@@ -3,6 +3,9 @@ use Twig\Environment;
 include '../vendor/autoload.php';
 // on inclus le modele
 include '../model/model.php';
+include '../model/Post.php';
+include '../entities/Post.php';
+
 
 class HomeBackController{
     private $twig;
@@ -10,84 +13,49 @@ class HomeBackController{
     public function __construct(Environment $twig) {
         $this->twig = $twig;
     }
-    public function displayHomeBack(){
+
+    public function displayHomeBack(){ // ok
         try {
-            //$loader = new Twig\Loader\FilesystemLoader('templates');
-            //$twig = new Twig\Environment($loader);
             $template = $this->twig->load('backof.html.twig');
-            // require_once("../model/modele.php");
-            //$homeBack = new connectionBDD();
-            // $infoAccueils = $homeBack->get_home_Back_by_id(0);
-            $titre = "Accueil";
-            // render template
-                echo $template->render(array(
-                    /*'titre' => $titre,
-                    'infoAccueils' => $infoAccueils,
-                    'post' => $_POST*/
-                ));
+            echo $template->render(array());
         } catch (Exception $e) {
             die ('ERROR: ' . $e->getMessage());
         }
     }
-
-    public function displayBackAddPost(){
+    public function displayBackAddPost(){ // ok
         try {
-            //$loader = new Twig\Loader\FilesystemLoader('templates');
-            //$twig = new Twig\Environment($loader);
             $template = $this->twig->load('backaddpost.html.twig');
-            // require_once("../model/modele.php");
-            //$homeBack = new connectionBDD();
-            // $infoAccueils = $homeBack->get_home_Back_by_id(0);
-            $titre = "Accueil";
-            // render template
-                echo $template->render(array(
-                    /*'titre' => $titre,
-                    'infoAccueils' => $infoAccueils,
-                    'post' => $_POST*/
-                ));
+            echo $template->render(array());
         } catch (Exception $e) {
             die ('ERROR: ' . $e->getMessage());
         }
     }
-
-    public function displayBackListPost(){
+    public function displayBackListPost($tab){ // ok
         try {
-            //$loader = new Twig\Loader\FilesystemLoader('templates');
-            //$twig = new Twig\Environment($loader);
             $template = $this->twig->load('backlistpost.html.twig');
-            // require_once("../model/modele.php");
-            //$homeBack = new connectionBDD();
-            // $infoAccueils = $homeBack->get_home_Back_by_id(0);
-            $titre = "Accueil";
-            // render template
-                echo $template->render(array(
-                    /*'titre' => $titre,
-                    'infoAccueils' => $infoAccueils,
-                    'post' => $_POST*/
-                ));
+            $affichageListPost = new App\Entities\Post();
+            $listpost = $affichageListPost->allById($tab['Auth']['iduser']);
+            $titre = "listPost";
+            echo $template->render(array(
+                'titre' => $titre,
+                'listpost' => $listpost,
+            ));
         } catch (Exception $e) {
             die ('ERROR: ' . $e->getMessage());
         }
     }
-
-    public function displayBackDelPost(){
-
+    public function displayBackDelPost(){ // A FAIRE
+        // a faire
     }
-
-    public function displayBackUpdatePost(){
+    public function displayBackUpdatePost($id){ // ok
         try {
-            //$loader = new Twig\Loader\FilesystemLoader('templates');
-            //$twig = new Twig\Environment($loader);
             $template = $this->twig->load('backupdatepost.html.twig');
-            // require_once("../model/modele.php");
-            //$homeBack = new connectionBDD();
-            // $infoAccueils = $homeBack->get_home_Back_by_id(0);
-            $titre = "Accueil";
-            // render template
+            $affichagePost = new App\Entities\Post();
+            $post = $affichagePost->show($id);
+            $titre = "Post";
                 echo $template->render(array(
-                    /*'titre' => $titre,
-                    'infoAccueils' => $infoAccueils,
-                    'post' => $_POST*/
+                    'titre' => $titre,
+                    'post' => $post,
                 ));
         } catch (Exception $e) {
             die ('ERROR: ' . $e->getMessage());

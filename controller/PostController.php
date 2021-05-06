@@ -13,10 +13,11 @@ class PostController {
     public function __construct(Environment $twig) {
         $this->twig = $twig;
     }
-    public function displayPost($id) {
+    
+    public function displayPost($id) { // ok
         try {
             $template = $this->twig->load('post.html.twig');
-            $affichagePost = new App\models\Post();
+            $affichagePost = new App\Entities\Post();
             $post = $affichagePost->show($id);
             $titre = "Post";
                 echo $template->render(array(
@@ -27,11 +28,10 @@ class PostController {
             die ('ERROR: ' . $e->getMessage());
         }
     }
-
-    public function displayListPost() {
+    public function displayListPost() { // ok
         try {
             $template = $this->twig->load('listpost.html.twig');
-            $affichageListPost = new App\models\Post();
+            $affichageListPost = new App\Entities\Post();
             $listpost = $affichageListPost->all();
             $titre = "listPost";
             echo $template->render(array(

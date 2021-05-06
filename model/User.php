@@ -9,7 +9,7 @@ class User extends Model{
             $sql = "INSERT INTO user (iduser, pseudo, nom, prenom, mail, password) 
                     VALUES (NULL, :pseudo, :nom, :prenom, :mail, :password)";
             $stmt=self::$connexion->prepare($sql);
-            $stmt->execute(
+            $resultat = $stmt->execute(
                 [
                     ':pseudo' => $pseudo,
                     ':nom' => $nom,
@@ -18,6 +18,7 @@ class User extends Model{
                     ':password' => sha1($password),
                 ]
             );
+            return $resultat;
         }
     
         /** validation connexion */
@@ -29,14 +30,8 @@ class User extends Model{
             $stmt->bindParam(':pseudo', $pseudo);
             $stmt->bindParam(':pass', $password);
             $stmt->execute();
-            $resultat = $stmt->fetchAll(\PDO::FETCH_OBJ);
-
-            if($resultat){
-                return true;
-            }
-            else {
-                return false;
-            }
+            $resultat = $stmt->fetch(\PDO::FETCH_ASSOC);
+            return $resultat;
         }
 
         function get_user($pseudo){

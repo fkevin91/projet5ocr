@@ -4,10 +4,20 @@ namespace App\models;
 class Post extends Model{
 
         /** Récupére la liste des posts sous forme d'un tableau */
-        function all(){
+        function all()
+        {
             $sql="SELECT * from blogpost";
             $data=self::$connexion->query($sql);
             return $data;
+        }
+        /** Récupére la liste des posts sous forme d'un tableau */
+        function allById($user)
+        {
+            $sql="SELECT * from blogpost where user_iduser=:user";
+            $stmt=self::$connexion->prepare($sql);
+            $stmt->bindParam(':user', $user, \PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(\PDO::FETCH_OBJ);
         }
         /** Récupére un post à partir de son ID */
         function show($id)
@@ -41,7 +51,8 @@ class Post extends Model{
             }    
         
         /** Mettre a jour un post à la table blogpost */
-        function update($titre, $contenu, $photo_url, $date_creation, $user_iduser, $idblogpost){
+        function update($titre, $contenu, $photo_url, $date_creation, $user_iduser, $idblogpost)
+        {
             $sql = "UPDATE blogpost
                 SET titre = :titre, 
                 contenu = :contenu, 
@@ -51,14 +62,14 @@ class Post extends Model{
                 WHERE idblogpost = :idblogpost";
             $stmt=self::$connexion->prepare($sql);
             $stmt->execute(
-            [
-                ':titre' => $titre,
-                ':contenu' => $contenu,
-                ':photo_url' =>  $photo_url,
-                ':date_creation' => $date_creation,
-                ':user_iduser' =>  $user_iduser,
-                ':idblogpost' =>  $idblogpost,
-            ]
-        );
+                [
+                    ':titre' => $titre,
+                    ':contenu' => $contenu,
+                    ':photo_url' =>  $photo_url,
+                    ':date_creation' => $date_creation,
+                    ':user_iduser' =>  $user_iduser,
+                    ':idblogpost' =>  $idblogpost,
+                ]
+            );
         }
 }

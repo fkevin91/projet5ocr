@@ -4,7 +4,6 @@ namespace App\Entities;
 class Post {
   // Properties
   private $titre;
-  private $chapo;
   private $contenu;
   private $auteur;
   private $date;
@@ -16,20 +15,53 @@ class Post {
    * __construct
    *
    * @param  string $titre
-   * @param  string $chapo
    * @param  string $contenu
    * @param  string $auteur
    * @param  string $date
    * @param  string $photo_url
    * @return void
    */
-  public function __construct($titre, $contenu, $photo_url, $date, $auteur) {
+  public function __construct() {
 
+  }
+
+  public function set_titre($titre)
+  {
     $this->titre = $titre;
+  }
+  public function set_contenu($contenu)
+  {
     $this->contenu = $contenu;
+  }
+  public function set_photo_url($photo_url)
+  {
     $this->photo_url = $photo_url;
+  }
+  public function set_date($date)
+  {
     $this->date = $date;
+  }
+  public function set_auteur($auteur)
+  {
     $this->auteur = $auteur;
+  }
+
+  function allById($user){
+    $selectAll = new \App\models\Post();
+    $resultat = $selectAll->allById($user);
+    return $resultat;
+  }
+
+  function all(){
+    $selectAll = new \App\models\Post();
+    $resultat = $selectAll->all();
+    return $resultat;
+  }
+
+  function show($id){
+    $select = new \App\models\Post();
+    $resultat = $select->show($id);
+    return $resultat;
   }
   
   /**

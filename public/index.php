@@ -20,7 +20,6 @@ $arrayPageSecure = array(
     'homebackCommentValid',
 );
 
-
 $loader = new \Twig\Loader\FilesystemLoader('../view');
 $twig = new \Twig\Environment($loader, [
 ]);
@@ -80,21 +79,29 @@ if (in_array($post, $arrayPage)) {
             }
             break;
         case 'homeback':
-            if(!empty($_SESSION['Auth']['login']) && !empty($_SESSION['Auth']['pass'])){
+            if(!empty($_SESSION['Auth']['pseudo']) && !empty($_SESSION['Auth']['iduser'])){
                 if (!empty($_GET['back']) && in_array($_GET['back'], $arrayPageSecure)) {
                     $back = $_GET['back'];
                     switch ($back) {
                         case 'homeback':
                             $controller->displayHomeBack();
+                            // ok
                             break;
                         case 'homebackAdd':
                             $controller->displayBackAddPost();
+                            // ok
                             break;
                         case 'homebackList':
-                            $controller->displayBackListPost();
+                            $controller->displayBackListPost($_SESSION);
                             break;
                         case 'homebackUpdate':
-                                $controller->displayBackUpdatePost();
+                            if (isset($_GET['idblogpost']) && $_GET['idblogpost'] >= 0) {
+                                $controller->displayBackUpdatePost($_GET['idblogpost']);
+                            }
+                            else {
+                                header('location:../public/homeback?back=homebackList');
+                                //$controller->displayBackListPost();
+                            }
                             break;
                         case 'homebackCommentValid':
                             // a faire !!!!
