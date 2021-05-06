@@ -27,38 +27,42 @@ class Post {
 
     $this->titre = $titre;
     $this->contenu = $contenu;
-    $this->auteur = $auteur;
-    $this->date = $date;
     $this->photo_url = $photo_url;
+    $this->date = $date;
+    $this->auteur = $auteur;
   }
   
   /**
    * set_blogpost
    *
    */
-  public function set_blogpost() {
-    $a = new \App\models\Article();
+  public function create() {
+    $a = new \App\models\Post();
     $a->create(
       $this->get_titre(),
       $this->get_contenu(),
-      $this->get_photo_url(),
+      $this->get_photo_url(), // ne peut etre nul
       $this->get_date(),
       $this->get_auteur()
     );
   }
 
-
   /**
    * update_blogpost
    *
    */
-  public function update_blogpost($idblogpost) {
-    $a = new \App\models\Article();
-    $a->update($this->get_titre(),$this->get_contenu(),$this->get_photo_url(),$this->get_date(),$this->get_auteur(), $idblogpost);
+  public function update($idblogpost) {
+    $a = new \App\models\Post();
+    $a->update(
+      $this->get_titre(),
+      $this->get_contenu(),
+      $this->get_photo_url(),
+      $this->get_date(),
+      $this->get_auteur(), 
+      $idblogpost
+    );
 
   }
-
-
 
   /**
    * get_titre
@@ -67,15 +71,6 @@ class Post {
    */
   public function get_titre() {
     return $this->titre;
-  }
-  
-  /**
-   * get_chapo
-   *
-   * @return chapo du blogpost
-   */
-  public function get_chapo() {
-    return $this->chapo;
   }
   
   /**

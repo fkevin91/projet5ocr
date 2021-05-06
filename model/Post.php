@@ -19,20 +19,26 @@ class Post extends Model{
             return $stmt->fetchAll(\PDO::FETCH_OBJ);
         }
         /** Ajoute un post à la table blogpost */
-        function create($titre, $contenu, $photo_url, $date_creation, $user_iduser){
-            $sql = "INSERT INTO blogpost(idblogpost, titre, contenu,photo_url,date_creation,user_iduser) 
-                VALUES (NULL, :titre, :contenu, :photo_url, :date_creation, :user_iduser)";
-            $stmt=self::$connexion->prepare($sql);
-            $stmt->execute(
-            [
-                ':titre' => $titre,
-                ':contenu' => $contenu,
-                ':photo_url' =>  $photo_url,
-                ':date_creation' => $date_creation,
-                ':user_iduser' =>  $user_iduser,
-            ]
-        );
-        }    
+        function create(
+                $titre, 
+                $contenu, 
+                $photo_url, // ne peut etre nul
+                $date_creation, 
+                $user_iduser // doit etre un integer
+            ){
+                $sql = "INSERT INTO blogpost(idblogpost, titre, contenu,photo_url,date_creation,user_iduser) 
+                    VALUES (NULL, :titre, :contenu, :photo_url, :date_creation, :user_iduser)";
+                $stmt=self::$connexion->prepare($sql);
+                $stmt->execute(
+                    [
+                        ':titre' => $titre,
+                        ':contenu' => $contenu,
+                        ':photo_url' =>  $photo_url,
+                        ':date_creation' => $date_creation,
+                        ':user_iduser' =>  $user_iduser,
+                    ]
+                );
+            }    
         
         /** Mettre a jour un post à la table blogpost */
         function update($titre, $contenu, $photo_url, $date_creation, $user_iduser, $idblogpost){

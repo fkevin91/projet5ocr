@@ -4,7 +4,7 @@ use Twig\Environment;
 include '../vendor/autoload.php';
 // on inclus le modele
 include '../model/Model.php';
-include '../model/Article.php';
+include '../model/Post.php';
 // On instancie une connexion
 
 class PostController {
