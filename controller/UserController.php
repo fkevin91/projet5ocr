@@ -14,34 +14,18 @@ class UserController {
     public function __construct(Environment $twig) {
         $this->twig = $twig;
     }
-
-    
-
     public function displayLog() {
         try {
             $template = $this->twig->load('log.html.twig');
-            //$affichageLog = new connectionBDD();
-            //$log = $affichageLog->get_Log_by_id($id);
-            //$titre = "Connexion";
-            echo $template->render(array(
-            //    'titre' => $titre,
-            //    'log' => $log,
-            ));
+            echo $template->render(array());
         } catch (Exception $e) {
             die ('ERROR: ' . $e->getMessage());
         }
     }
-
     public function displayRegistration() {
         try {
             $template = $this->twig->load('registration.html.twig');
-            //$affichageRegistration = new connectionBDD();
-            //$Registration = $affichageRegistration->get_Registration_by_id($id);
-            //$titre = "Connexion";
-            echo $template->render(array(
-            //    'titre' => $titre,
-            //    'Registration' => $Registration,
-            ));
+            echo $template->render(array());
         } catch (Exception $e) {
             die ('ERROR: ' . $e->getMessage());
         }

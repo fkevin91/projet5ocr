@@ -24,7 +24,6 @@ class User {
     $this->pseudo = $pseudo;
     $this->password = $password;
   }
-
   public function set_nom($nom){
     $this->nom = $nom;
   }
@@ -34,8 +33,6 @@ class User {
   public function set_mail($mail){
     $this->mail = $mail;
   }
-
-  
   public function create(){
     $ajout = new \App\models\User;
     $resultat = $ajout->create(
@@ -47,7 +44,6 @@ class User {
     );
     return $resultat;
   }
-
   public function check() {
     $verif = new \App\models\User;
     $resultat= $verif->check($this->pseudo, $this->password);
@@ -57,7 +53,6 @@ class User {
       return false;
     }
   }
-
   /**
    * get_id
    *
@@ -74,7 +69,6 @@ class User {
   public function get_pseudo() {
     return $this->pseudo;
   }
-  
   /**
    * get_nom
    *
@@ -83,7 +77,6 @@ class User {
   public function get_nom() {
     return $this->nom;
   }
-  
   /**
    * get_prenom
    *
@@ -92,7 +85,6 @@ class User {
   public function get_prenom() {
     return $this->prenom;
   }
-  
   /**
    * get_mail
    *
@@ -101,5 +93,4 @@ class User {
   public function get_mail() {
     return $this->mail;
   }
-  
 }

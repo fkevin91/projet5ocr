@@ -13,7 +13,6 @@ class PostController {
     public function __construct(Environment $twig) {
         $this->twig = $twig;
     }
-    
     public function displayPost($id) { // ok
         try {
             $template = $this->twig->load('post.html.twig');

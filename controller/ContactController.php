@@ -13,7 +13,6 @@ class ContactController {
     public function __construct(Environment $twig) {
         $this->twig = $twig;
     }
-
     public function displayContact() {
         try {
             $template = $this->twig->load('contact.html.twig');
