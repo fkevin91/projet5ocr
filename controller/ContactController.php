@@ -1,18 +1,9 @@
 <?php
+namespace App\Controller;
 
-use Twig\Environment;
-include '../vendor/autoload.php';
-// on inclus le modele
-include '../model/model.php';
-// On instancie une connexion
 
-class ContactController {
+class ContactController extends Controller {
 
-    private $twig;
-
-    public function __construct(Environment $twig) {
-        $this->twig = $twig;
-    }
     public function displayContact() {
         try {
             $template = $this->twig->load('contact.html.twig');
@@ -20,7 +11,7 @@ class ContactController {
             echo $template->render(array(
                 'titre' => $titre,
             ));
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             die ('ERROR: ' . $e->getMessage());
         }
     }

@@ -1,24 +1,14 @@
 <?php
 
-use Twig\Environment;
-include '../vendor/autoload.php';
-// on inclus le modele
-include '../model/Model.php';
-include '../model/User.php';
-// On instancie une connexion
+namespace App\Controller;
 
-class UserController {
+class UserController extends Controller {
 
-    private $twig;
-
-    public function __construct(Environment $twig) {
-        $this->twig = $twig;
-    }
     public function displayLog() {
         try {
             $template = $this->twig->load('log.html.twig');
             echo $template->render(array());
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             die ('ERROR: ' . $e->getMessage());
         }
     }
@@ -26,7 +16,7 @@ class UserController {
         try {
             $template = $this->twig->load('registration.html.twig');
             echo $template->render(array());
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             die ('ERROR: ' . $e->getMessage());
         }
     }

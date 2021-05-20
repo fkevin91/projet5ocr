@@ -1,18 +1,15 @@
 <?php
-require_once '../vendor/autoload.php';
 
-include '../entities/User.php';
-include '../entities/Post.php';
-include '../model/Model.php';
-include '../model/User.php';
-include '../model/Post.php';
+use App\Entities\Post;
+use App\Entities\User;
+
 
 class FormController{
 
     public function recuperation_du_formulaire($tab){
         switch ($tab['formulaire']){
             case 'addPost': // ok
-                $formulaire = new App\Entities\Post();
+                $formulaire = new Post();
                 $formulaire->set_titre($tab['titre']);
                 $formulaire->set_contenu($tab['contenu']);
                 $formulaire->set_photo_url($tab['photo_url']);
@@ -28,7 +25,7 @@ class FormController{
                 }else{
                     $photo = $tab['photo_url'];
                 }
-                $formulaire = new App\Entities\Post();
+                $formulaire = new Post();
                 $formulaire->set_titre($tab['titre']);
                 $formulaire->set_contenu($tab['contenu']);
                 $formulaire->set_photo_url($photo);
@@ -39,7 +36,7 @@ class FormController{
                 break;
 
             case 'registration': // ok 
-                $formulaire = new App\Entities\User($tab['pseudo'], $tab['password']);
+                $formulaire = new User($tab['pseudo'], $tab['password']);
                 $formulaire->set_nom($tab['nom']);
                 $formulaire->set_prenom($tab['prenom']);
                 $formulaire->set_mail($tab['mail']);
@@ -50,7 +47,7 @@ class FormController{
                 break;
 
             case 'log': // ok
-                $formulaire = new App\Entities\User($tab['pseudo'],$tab['password']);
+                $formulaire = new User($tab['pseudo'],$tab['password']);
                 $bool = $formulaire->check();
                 if(isset($bool)){
                     $_SESSION['Auth'] = $bool;

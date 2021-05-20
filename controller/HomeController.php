@@ -1,20 +1,13 @@
 <?php
-use Twig\Environment;
-include '../vendor/autoload.php';
-// on inclus le modele
-include '../model/Model.php';
+namespace App\Controller;
 
-class HomeController{
-    private $twig;
 
-    public function __construct(Environment $twig) {
-        $this->twig = $twig;
-    }
+class HomeController extends Controller{
     public function displayHome(){
         try {
             $template = $this->twig->load('index.html.twig');
             echo $template->render(array());
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             die ('ERROR: ' . $e->getMessage());
         }
     }

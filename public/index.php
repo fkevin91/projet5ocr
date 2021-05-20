@@ -34,9 +34,14 @@ else {
 
 if (in_array($post, $arrayPage)) {
     //recupération de l'url et on y ajoute le nom controller
-    $className = ucfirst($post) . 'Controller';
+    //$className = ucfirst($post) . 'Controller';
+    $className = 'App\\Controller\\' . ucfirst($post) . 'Controller';
+    $classFile = ucfirst($post) . 'Controller';
+    var_dump($classFile);
     //on appelle le controller correspondant
-    include '../controller/'  . $className . '.php';
+    include '../controller/'  . $classFile . '.php';
+    var_dump($className);
+    
     //on prend le loader
     $twig = new \Twig\Environment($loader);
     //création de l'objet "controller"
@@ -122,6 +127,6 @@ else {
     $post = 'home';
     include_once '../controller/HomeController.php';
     $twig = new \Twig\Environment($loader);
-    $controller = new HomeController($twig);
+    $controller = new \App\Controller\HomeController($twig);
     $controller->displayHome();
 }
