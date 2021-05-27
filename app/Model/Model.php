@@ -1,5 +1,5 @@
 <?php
-namespace App\models;
+namespace App\Model;
 
 class Model {
     protected static $connexion=null;

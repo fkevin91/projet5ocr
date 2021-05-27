@@ -1,12 +1,12 @@
 <?php
-namespace App\models;
-
+namespace App\Model;
+use App\Entities\Post as PostEntity;
 class Post extends Model{
 
         /** Récupére la liste des posts sous forme d'un tableau */
         function all()
         {
-            $sql="SELECT * from blogpost";
+            $sql="SELECT * FROM blogpost ORDER BY idblogpost DESC";
             $data=self::$connexion->query($sql);
             return $data;
         }
@@ -20,6 +20,17 @@ class Post extends Model{
             return $stmt->fetchAll(\PDO::FETCH_OBJ);
         }
         /** Récupére un post à partir de son ID */
+        function find($id)
+        {
+            $sql="SELECT * from blogpost where idblogpost=:id";
+            $stmt=self::$connexion->prepare($sql);
+            $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+            $stmt->execute();
+            //$entity = new PostEntity();
+            //$entity->hydrate($stmt->fetchAll()[0]);
+            //return $this->getInstances($stmt->fetchAll(), PostEntity::class);
+            return $stmt->fetchAll(\PDO::FETCH_OBJ);
+        }
         function show($id)
         {
             $sql="SELECT * from blogpost where idblogpost=:id";
@@ -72,4 +83,14 @@ class Post extends Model{
                 ]
             );
         }
+
+        public function getInstances(array $data, string $class = ""):array
+     {
+          if ( $class === "" ) $class = $this->class; 
+          $result = [];
+          foreach ( $data as $key => $value ) {
+               $result[$key] = new $class($value); 
+          }
+          return $result;
+     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\models;
+namespace App\Model;
 
 class User extends Model{
 

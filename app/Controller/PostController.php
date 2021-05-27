@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
 
-use App\Controller\Controller;
 use App\Entities\Post;
 
 
@@ -11,7 +10,14 @@ class PostController extends Controller {
         try {
             $template = $this->twig->load('post.html.twig');
             $affichagePost = new Post();
-            $post = $affichagePost->show($id);
+            $post = $affichagePost->show($id); // [0];
+            // var_dump($post);
+            // var_dump($post->titre);
+            // $test = new \App\Model\Post();
+            // $post=$test->find($id)[0];
+            // var_dump($post);
+            // var_dump($post->get_titre());
+            // die();
             $titre = "Post";
                 echo $template->render(array(
                     'titre' => $titre,

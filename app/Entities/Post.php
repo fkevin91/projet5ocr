@@ -1,6 +1,6 @@
 <?php
 namespace App\Entities;
-
+use App\Model\Post as PostModel;
 class Post {
   // Properties
   private $titre;
@@ -10,21 +10,9 @@ class Post {
   private $photo_url;
 
   // Methods
+
   
-  /**
-   * __construct
-   *
-   * @param  string $titre
-   * @param  string $contenu
-   * @param  string $auteur
-   * @param  string $date
-   * @param  string $photo_url
-   * @return void
-   */
-  public function __construct() {
-
-  }
-
+  
   public function set_titre($titre)
   {
     $this->titre = $titre;
@@ -47,19 +35,19 @@ class Post {
   }
 
   function allById($user){
-    $selectAll = new \App\models\Post();
+    $selectAll = new PostModel();
     $resultat = $selectAll->allById($user);
     return $resultat;
   }
 
   function all(){
-    $selectAll = new \App\models\Post();
+    $selectAll = new PostModel();
     $resultat = $selectAll->all();
     return $resultat;
   }
 
   function show($id){
-    $select = new \App\models\Post();
+    $select = new PostModel();
     $resultat = $select->show($id);
     return $resultat;
   }
@@ -69,7 +57,7 @@ class Post {
    *
    */
   public function create() {
-    $a = new \App\models\Post();
+    $a = new PostModel();
     $a->create(
       $this->get_titre(),
       $this->get_contenu(),
@@ -84,7 +72,7 @@ class Post {
    *
    */
   public function update($idblogpost) {
-    $a = new \App\models\Post();
+    $a = new PostModel();
     $a->update(
       $this->get_titre(),
       $this->get_contenu(),

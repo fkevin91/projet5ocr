@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Entities;
+use App\Model\User as UserModel;
 
 class User {
   // Properties
@@ -34,7 +35,7 @@ class User {
     $this->mail = $mail;
   }
   public function create(){
-    $ajout = new \App\models\User;
+    $ajout = new UserModel();
     $resultat = $ajout->create(
       $this->pseudo,
       $this->nom,
@@ -45,7 +46,7 @@ class User {
     return $resultat;
   }
   public function check() {
-    $verif = new \App\models\User;
+    $verif = new UserModel();
     $resultat= $verif->check($this->pseudo, $this->password);
     if(isset($resultat)){
       return $resultat;

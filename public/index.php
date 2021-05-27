@@ -1,8 +1,7 @@
 <?php
 require_once '../vendor/autoload.php';
+require_once '../app/controller/Controller.php';
 session_start();
-//var_dump($_SESSION);
-//creation d'un tableau des routes
 $arrayPage = array(
     'post', 
     'home', 
@@ -34,15 +33,11 @@ else {
 
 if (in_array($post, $arrayPage)) {
     //recupération de l'url et on y ajoute le nom controller
-    //$className = ucfirst($post) . 'Controller';
     $className = 'App\\Controller\\' . ucfirst($post) . 'Controller';
     $classFile = ucfirst($post) . 'Controller';
-    var_dump($classFile);
     //on appelle le controller correspondant
-    include '../controller/'  . $classFile . '.php';
-    var_dump($className);
-    
-    //on prend le loader
+    include '../app/controller/'  . $classFile . '.php';
+   //on prend le loader
     $twig = new \Twig\Environment($loader);
     //création de l'objet "controller"
     $controller = new $className($twig);
@@ -125,7 +120,7 @@ if (in_array($post, $arrayPage)) {
 }
 else {
     $post = 'home';
-    include_once '../controller/HomeController.php';
+    include_once '../app/controller/HomeController.php';
     $twig = new \Twig\Environment($loader);
     $controller = new \App\Controller\HomeController($twig);
     $controller->displayHome();

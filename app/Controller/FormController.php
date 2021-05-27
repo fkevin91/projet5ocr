@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Controller;
 use App\Entities\Post;
 use App\Entities\User;
 
@@ -9,6 +9,17 @@ class FormController{
     public function recuperation_du_formulaire($tab){
         switch ($tab['formulaire']){
             case 'addPost': // ok
+                $formulaire = new Post();
+                $formulaire->set_titre($tab['titre']);
+                $formulaire->set_contenu($tab['contenu']);
+                $formulaire->set_photo_url($tab['photo_url']);
+                $formulaire->set_date(date("Y-m-d H:i:s"));
+                $formulaire->set_auteur($_SESSION['Auth']['iduser']);
+                $formulaire->create();
+                header('location:../public/homeback?back=homeback');
+                break;
+
+            case 'addComment': // ok
                 $formulaire = new Post();
                 $formulaire->set_titre($tab['titre']);
                 $formulaire->set_contenu($tab['contenu']);
