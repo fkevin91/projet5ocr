@@ -12,8 +12,6 @@ class User {
   private $mail;
   private $password;
 
-  // Methods
-  
   /**
    * __construct
    *
@@ -21,9 +19,17 @@ class User {
    * @param  string $password
    * @return void
    */
-  public function __construct($pseudo, $password) {
+  /* public function __construct($pseudo, $password) {
     $this->pseudo = $pseudo;
     $this->password = $password;
+  } */
+
+  //Setteurs
+  public function set_id($id){
+    $this->id = $id;
+  }
+  public function set_pseudo($pseudo){
+    $this->pseudo = $pseudo;
   }
   public function set_nom($nom){
     $this->nom = $nom;
@@ -34,26 +40,11 @@ class User {
   public function set_mail($mail){
     $this->mail = $mail;
   }
-  public function create(){
-    $ajout = new UserModel();
-    $resultat = $ajout->create(
-      $this->pseudo,
-      $this->nom,
-      $this->prenom,
-      $this->mail,
-      $this->password,
-    );
-    return $resultat;
+  public function set_password($password){
+    $this->password = $password;
   }
-  public function check() {
-    $verif = new UserModel();
-    $resultat= $verif->check($this->pseudo, $this->password);
-    if(isset($resultat)){
-      return $resultat;
-    }else{
-      return false;
-    }
-  }
+  
+  //Getteurs
   /**
    * get_id
    *
@@ -93,5 +84,37 @@ class User {
    */
   public function get_mail() {
     return $this->mail;
+  }
+  /**
+   * get_password
+   *
+   * @return password utilisateur
+   */
+  public function get_password() {
+    return $this->password;
+  }
+
+  // Methods
+  public function hydrate($data){
+    if($data == false){
+      return;
+    }
+    if(!array_key_exists('iduser', $data)){
+      $data['iduser']=0;
+    }
+    $this->set_id($data['iduser']);
+    $this->set_pseudo($data['pseudo']);
+    $this->set_nom($data['nom']);
+    $this->set_prenom($data['prenom']);
+    $this->set_mail($data['mail']);
+    $this->set_password($data['password']);
+  }
+
+  public function securityPass($data){
+    if($data == false){
+      return;
+    }
+    $this->set_pseudo($data['pseudo']);
+    $this->set_password($data['password']);
   }
 }
