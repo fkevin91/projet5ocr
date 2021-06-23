@@ -1,71 +1,88 @@
 <?php
 namespace App\Entities;
 use App\Model\Comment as PostModel;
-class Post {
+class Comment {
   // Properties
-    private $idComment;
+    private $idComments;
     private $date;
     private $contenu;
     private $isApprouve;
     private $user;
     private $blogpost;
-    private $autheur;
-  
+    private $auteur;
+
   // Methods
-  public function set_idComment($idComment)
-  {
-    $this->idComment = $idComment;
-  }
-  public function get_idComment() {
-    return $this->idComment;
+
+  public function hydrate($data){
+    if($data == false){
+      return;
+    }
+    if(!array_key_exists('idComments', $data)){
+      $data['idComments']=0;
+    }
+    if(!array_key_exists('date', $data)){
+      $data['date']= null;
+    }
+    if(!array_key_exists('isApprouve', $data)){
+      $data['isApprouve']=0;
+    }
+    $this->set_idComments($data['idComments']);
+    $this->set_date($data['date']);
+    $this->set_contenu($data['contenu']);
+    $this->set_isApprouve($data['isApprouve']);
+    $this->set_user($data['user_iduser']);
+    $this->set_blogpost($data['blogpost_idblogpost']);
+    $this->set_auteur($data['autheur']);
   }
   
-  public function set_date($date)
-  {
+  // Setteurs && Getteurs
+  public function set_idComments($idComments){
+    $this->idComments = $idComments;
+  }
+  public function get_idComments() {
+    return $this->idComments;
+  }
+  
+  public function set_date($date){
     $this->date = $date;
   }
   public function get_date() {
     return $this->date;
   }
 
-  public function set_contenu($contenu)
-  {
+  public function set_contenu($contenu){
     $this->contenu = $contenu;
   }
   public function get_contenu() {
     return $this->contenu;
   }
 
-  public function set_isApprouve($isApprouve)
-  {
+  public function set_isApprouve($isApprouve){
     $this->isApprouve = $isApprouve;
   }
   public function get_isApprouve() {
     return $this->isApprouve;
   }
 
-  public function set_user($user)
-  {
+  public function set_user($user){
     $this->user = $user;
   }
   public function get_user() {
     return $this->user;
   }
 
-  public function set_blogpost($blogpost)
-  {
+  public function set_blogpost($blogpost){
     $this->blogpost = $blogpost;
   }
   public function get_blogpost() {
     return $this->blogpost;
   }
 
-  public function set_autheur($autheur)
-  {
-    $this->autheur = $autheur;
+  public function set_auteur($auteur){
+    $this->auteur = $auteur;
   }
-  public function get_autheur() {
-    return $this->autheur;
+  public function get_auteur() {
+    return $this->auteur;
   }
 
 

@@ -4,6 +4,22 @@ namespace App\Model;
 
 class Comment extends Model{
 
+    function create($entity){
+        $sql = "INSERT INTO `comments`(`idcomments`, `date`, `contenu`, `isApprouve`, `user_iduser`, `blogpost_idblogpost`, `autheur`) 
+        VALUES (NULL,:date,:contenu,:isApprouve,:user_iduser,:blogpost_idblogpost,:autheur)";
+        $stmt=self::$connexion->prepare($sql);
+        $stmt->execute(
+            [
+                ':date' => $entity->get_date(),
+                ':contenu' => $entity->get_contenu(),
+                ':isApprouve' =>  $entity->get_isApprouve(),
+                ':user_iduser' => $entity->get_user(),
+                ':blogpost_idblogpost' =>  $entity->get_blogpost(),
+                ':autheur' =>  $entity->get_auteur(),
+            ]
+        );
+    }
+
     function all(){
         $sql = "SELECT * FROM `comments` ORDER BY idcomments DESC";
         $data=self::$connexion->query($sql);
@@ -20,7 +36,7 @@ class Comment extends Model{
         $stmt=self::$connexion->prepare($sql);
         $stmt->bindParam(':blogpost', $blogpost, \PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetchAll(\PDO::FETCH_OBJ);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     function allByBlogPostIsNotApprouve($blogpost)
@@ -33,7 +49,7 @@ class Comment extends Model{
         $stmt=self::$connexion->prepare($sql);
         $stmt->bindParam(':blogpost', $blogpost, \PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetchAll(\PDO::FETCH_OBJ);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     function delByIdComment($idComment)
@@ -42,7 +58,7 @@ class Comment extends Model{
         $stmt=self::$connexion->prepare($sql);
         $stmt->bindParam(':idComment', $idComment, \PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetchAll(\PDO::FETCH_OBJ);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
 
