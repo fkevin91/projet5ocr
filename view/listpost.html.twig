@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %} Liste des pots {% endblock %}
+{% block title %} Liste des posts {% endblock %}
 {% block body %}
 
 <div>
@@ -9,20 +9,20 @@
 <div class="container">
     <div class="row g-4">
         {% for infoPost in listpost %}
-            <a class="text-decoration-none text-dark col-6" href="post?idblogpost={{infoPost.idblogpost}}">
+            <a class="text-decoration-none text-dark col-6" href="post?idblogpost={{infoPost.get_id}}">
                 <div class="container p-1 border shadow rounded" style="background-color: #C2C4CC;">
                     <div class="well">
                         <div class="media d-flex">
                             <div class="p-3">
-                            <img class="media-object" src="{{infoPost.photo_url}}" width="150px" height="150px">
+                            <img class="media-object" src="{{infoPost.get_photo_url}}" width="150px" height="150px">
                             </div>
                             <div class="media-body w-50">
-                                <h4 class="media-heading"> {{infoPost.titre}} </h4>
+                                <h4 class="media-heading"> {{infoPost.get_titre}} </h4>
                                 <!-- contenu hidden
-                                <p>{{infoPost.contenu}}</p>
+                                <p>{{infoPost.get_contenu}}</p>
                                 -->
-                                <p>{{infoPost.date_creation}}</p> 
-                                <p>Autheur n° {{infoPost.user_iduser}} | x commentaires</p>
+                                <p>{{infoPost.get_date_creation}}</p> 
+                                <p>Autheur n° {{infoPost.get_auteur}}</p>
                             </div>
                         </div>
                     </div>

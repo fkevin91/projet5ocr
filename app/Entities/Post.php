@@ -3,6 +3,7 @@ namespace App\Entities;
 use App\Model\Post as PostModel;
 class Post {
   // Properties
+  private $id;
   private $titre;
   private $contenu;
   private $auteur;
@@ -10,9 +11,16 @@ class Post {
   private $photo_url;
 
   // Methods
-
+  public function __get($name)
+  {
+    $method = 'get_'.$name;
+    return $this->$method();
+  }
   
-  
+  public function set_id($id)
+  {
+    $this->id = $id;
+  }
   public function set_titre($titre)
   {
     $this->titre = $titre;
@@ -34,56 +42,32 @@ class Post {
     $this->auteur = $auteur;
   }
 
-  function allById($user){
-    $selectAll = new PostModel();
-    $resultat = $selectAll->allById($user);
-    return $resultat;
-  }
-
-  function all(){
-    $selectAll = new PostModel();
-    $resultat = $selectAll->all();
-    return $resultat;
-  }
-
-  function show($id){
-    $select = new PostModel();
-    $resultat = $select->show($id);
-    return $resultat;
-  }
   
   /**
    * set_blogpost
    *
    */
-  public function create() {
-    $a = new PostModel();
-    $a->create(
+  /* public function create() {
+    $model = new PostModel();
+    $model->create(
       $this->get_titre(),
       $this->get_contenu(),
       $this->get_photo_url(), // ne peut etre nul
       $this->get_date(),
       $this->get_auteur()
     );
-  }
+  } */
+
+
 
   /**
-   * update_blogpost
+   * get_id
    *
+   * @return id du blogpost
    */
-  public function update($idblogpost) {
-    $a = new PostModel();
-    $a->update(
-      $this->get_titre(),
-      $this->get_contenu(),
-      $this->get_photo_url(),
-      $this->get_date(),
-      $this->get_auteur(), 
-      $idblogpost
-    );
-
+  public function get_id() {
+    return $this->id;
   }
-
   /**
    * get_titre
    *
@@ -125,8 +109,23 @@ class Post {
    *
    * @return chemin d'acces de la photo du blogpost
    */
-  function get_photo_url() {
+  public function get_photo_url() {
     return $this->photo_url;
   }
   
+
+  public function hydrate($data){
+    if($data == false){
+      return;
+    }
+    if(!array_key_exists('idblogpost', $data)){
+      $data['idblogpost']=0;
+    }
+    $this->set_id($data['idblogpost']);
+    $this->set_titre($data['titre']);
+    $this->set_contenu($data['contenu']);
+    $this->set_photo_url($data['photo_url']);
+    $this->set_date($data['date_creation']);
+    $this->set_auteur($data['user_iduser']);
+  }
 }

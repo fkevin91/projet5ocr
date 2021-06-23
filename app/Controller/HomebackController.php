@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Entities\Post;
-
+use App\Model\Post as PostModel;
 
 
 class HomebackController extends Controller{
@@ -27,8 +27,8 @@ class HomebackController extends Controller{
     public function displayBackListPost($tab){ // ok
         try {
             $template = $this->twig->load('backlistpost.html.twig');
-            $affichageListPost = new Post();
-            $listpost = $affichageListPost->allById($tab['Auth']['iduser']);
+            $model = new PostModel();
+            $listpost = $model->allForUser($tab['Auth']['iduser']);
             $titre = "listPost";
             echo $template->render(array(
                 'titre' => $titre,
@@ -38,14 +38,19 @@ class HomebackController extends Controller{
             die ('ERROR: ' . $e->getMessage());
         }
     }
-    public function displayBackDelPost(){ // A FAIRE
-        // a faire
+    public function displayBackDelPost($id){ 
+        try {
+            (new PostModel())->delete($id);
+        } catch (\Exception $e) {
+            die ('ERROR: ' . $e->getMessage());
+        }
     }
     public function displayBackUpdatePost($id){ // ok
         try {
             $template = $this->twig->load('backupdatepost.html.twig');
-            $affichagePost = new Post();
-            $post = $affichagePost->show($id);
+            $model = new PostModel();
+            $post = $model->find($id);
+            var_dump($post);
             $titre = "Post";
                 echo $template->render(array(
                     'titre' => $titre,

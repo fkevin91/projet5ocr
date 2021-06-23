@@ -2,6 +2,10 @@
 namespace App\Controller;
 use App\Entities\Post;
 use App\Entities\User;
+use App\Entities\Comment;
+use App\Model\Post as PostModel;
+use App\Model\User as UserModel;
+use App\Model\Comment as CommentModel;
 
 
 class FormController{
@@ -9,68 +13,56 @@ class FormController{
     public function recuperation_du_formulaire($tab){
         switch ($tab['formulaire']){
             case 'addPost': // ok
-                $formulaire = new Post();
-                $formulaire->set_titre($tab['titre']);
-                $formulaire->set_contenu($tab['contenu']);
-                $formulaire->set_photo_url($tab['photo_url']);
-                $formulaire->set_date(date("Y-m-d H:i:s"));
-                $formulaire->set_auteur($_SESSION['Auth']['iduser']);
-                $formulaire->create();
+                $tab['date_creation']= date("Y-m-d H:i:s");
+                $tab['user_iduser']= $_SESSION['Auth']['iduser'];
+                $entity =new Post();
+                $entity->hydrate($tab);
+                $model = new PostModel();
+                $model->create($entity);
                 header('location:../public/homeback?back=homeback');
                 break;
-
-            case 'addComment': // ok
-                $formulaire = new Post();
-                $formulaire->set_titre($tab['titre']);
-                $formulaire->set_contenu($tab['contenu']);
-                $formulaire->set_photo_url($tab['photo_url']);
-                $formulaire->set_date(date("Y-m-d H:i:s"));
-                $formulaire->set_auteur($_SESSION['Auth']['iduser']);
-                $formulaire->create();
-                header('location:../public/homeback?back=homeback');
-                break;
-
+        
             case 'updatePost': // ok
                 if (empty($tab['photo_url'])){
-                    $photo = $tab['photo'];
-                }else{
-                    $photo = $tab['photo_url'];
+                    $tab['photo_url'] = $tab['photo'];
                 }
-                $formulaire = new Post();
-                $formulaire->set_titre($tab['titre']);
-                $formulaire->set_contenu($tab['contenu']);
-                $formulaire->set_photo_url($photo);
-                $formulaire->set_date(date($tab['date_creation']));
-                $formulaire->set_auteur($_SESSION['Auth']['iduser']);
-                $formulaire->update($tab['idblogpost']);
+                $entity = new Post();
+                $entity->hydrate($tab);
+                $model = (new PostModel())->update($entity);
                 header('location:../public/homeback?back=homeback');
                 break;
 
             case 'registration': // ok 
-                $formulaire = new User($tab['pseudo'], $tab['password']);
-                $formulaire->set_nom($tab['nom']);
-                $formulaire->set_prenom($tab['prenom']);
-                $formulaire->set_mail($tab['mail']);
-                $resultat = $formulaire->create();
-                if($resultat){
+                $entity = new User();
+                $entity->hydrate($tab);
+                $model = new UserModel();
+                $result = $model->create($entity);
+                if($result){
                     header('location:../public/user?user=1');
                 }
                 break;
 
             case 'log': // ok
-                $formulaire = new User($tab['pseudo'],$tab['password']);
-                $bool = $formulaire->check();
-                if(isset($bool)){
-                    $_SESSION['Auth'] = $bool;
+                $entity = new User();
+                $entity->securityPass($tab);
+                $model = new UserModel();
+                $result = $model->check($entity);
+                if(isset($result)){
+                    $_SESSION['Auth'] = $result;
                     header('location:../public/homeback?back=homeback');
                 }
                 else{
                     header('location:../public/home');
                 }
                 break;
+
+            case 'addComment': // A BRANCHER
+                $entity = new Comment();
+                $entity->hydrate($tab);
+                $model = new CommentModel();
+                $model->create($entity);
+                header('location:../public/homeback?back=homeback');
+                break;
         }
     }
 }
-
-
-

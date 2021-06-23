@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Entities\Post;
+use App\Model\Post as PostModel;
+
 
 
 class PostController extends Controller {
@@ -9,15 +11,8 @@ class PostController extends Controller {
     public function displayPost($id) { // ok
         try {
             $template = $this->twig->load('post.html.twig');
-            $affichagePost = new Post();
-            $post = $affichagePost->show($id); // [0];
-            // var_dump($post);
-            // var_dump($post->titre);
-            // $test = new \App\Model\Post();
-            // $post=$test->find($id)[0];
-            // var_dump($post);
-            // var_dump($post->get_titre());
-            // die();
+            $model = new PostModel();
+            $post = $model->find($id);
             $titre = "Post";
                 echo $template->render(array(
                     'titre' => $titre,
@@ -30,8 +25,8 @@ class PostController extends Controller {
     public function displayListPost() { // ok
         try {
             $template = $this->twig->load('listpost.html.twig');
-            $affichageListPost = new Post();
-            $listpost = $affichageListPost->all();
+            $model = new PostModel();
+            $listpost = $model->all();
             $titre = "listPost";
             echo $template->render(array(
                 'titre' => $titre,
