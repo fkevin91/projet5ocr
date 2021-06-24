@@ -38,8 +38,46 @@
 
 
             <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+            <button type="submit" class="btn btn-primary btn-block mb-4">Envoyer</button>
         </form>
+    </div>
+
+    <h3>Zone Commentaires :</h3>
+    <h6>Commentaires valide :</h6>
+    <div class="p-5">
+        {% for itemvalide in commentsvalide %}
+            <div class="p-2 m-2">
+                <div class="d-flex justify-content-between">
+                    <h5>{{itemvalide.get_auteur}}</h5>
+                    {{itemvalide.get_date}}
+                </div>
+                <div class="ps-5">
+                {{itemvalide.get_contenu}}
+                </div>
+            </div>
+            <hr class="featurette-divider">
+
+        {% endfor %}
+    </div>
+    <h6>Commentaires à valider :</h6>
+    <div class="p-5">
+        {% for itemnotvalide in commentsnotvalide %}
+            <div class="p-2 m-2">
+                <div class="d-flex justify-content-between">
+                    <h5>{{itemnotvalide.get_auteur}}</h5>
+                    {{itemnotvalide.get_date}}
+                </div>
+                <div class="ps-5">
+                    {{itemnotvalide.get_contenu}}
+                    <div class="d-flex justify-content-end">
+                        <a  href="homeback?back=homebackCommentValid&idcomments={{itemnotvalide.get_idComments}}&idblogpost={{itemnotvalide.get_blogpost}}" 
+                            type="button" class="btn btn-primary">Valider</a>
+                    </div>
+                </div>
+            </div>
+            <hr class="featurette-divider">
+
+        {% endfor %}
     </div>
   </div>
 </div>

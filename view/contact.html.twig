@@ -2,41 +2,28 @@
 {% block title %} Post {% endblock %}
 {% block body %}
 <div class="container col-6 g-3">
-    <form>
+    <form action="../public/form" method="post">
     <!-- Name input -->
     <div class="form-outline mb-4">
         <label class="form-label pt-5" for="form4Example1">Nom</label>
-        <input type="text" id="form4Example1" class="form-control" />
+        <input name="name" type="text" id="form4Example1" class="form-control" />
     </div>
 
     <!-- Email input -->
     <div class="form-outline mb-4">
         <label class="form-label" for="form4Example2">Adresse mail</label>
-        <input type="email" id="form4Example2" class="form-control" />
+        <input name="mail" type="email" id="form4Example2" class="form-control" />
     </div>
 
     <!-- Message input -->
     <div class="form-outline mb-4">
         <label class="form-label" for="form4Example3">Message</label>
-        <textarea class="form-control" id="form4Example3" rows="4"></textarea>
+        <textarea name="contenu" class="form-control" id="form4Example3" rows="4"></textarea>
     </div>
 
-    <!-- Checkbox -->
-    <div class="form-check d-flex justify-content-center mb-4">
-        <input
-        class="form-check-input me-2"
-        type="checkbox"
-        value=""
-        id="form4Example4"
-        checked
-        />
-        <label class="form-check-label" for="form4Example4">
-        M'envoyer une copie du message
-        </label>
-    </div>
-
+    <input type="hidden" name="formulaire" value="contact">
     <!-- Submit button -->
-    <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+    <button type="submit" class="btn btn-primary btn-block mb-4">Envoyer</button>
     </form>
 </div>
 {% endblock %}
