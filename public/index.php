@@ -96,7 +96,7 @@ if (in_array($post, $arrayPage)) {
                             break;
                         case 'homebackUpdate':
                             if (isset($_GET['idblogpost']) && $_GET['idblogpost'] >= 0) {
-                                $controller->displayBackUpdatePost($_GET['idblogpost']);
+                                $controller->displayBackUpdatePost($_GET['idblogpost'], $_SESSION);
                             }
                             else {
                                 header('location:../public/homeback?back=homebackList');
@@ -104,8 +104,10 @@ if (in_array($post, $arrayPage)) {
                             }
                             break;
                         case 'homebackCommentValid':
-                            // a faire !!!!
-                            $controller->displayHomeBack();
+                            if (isset($_GET['idcomments']) && $_GET['idcomments'] >= 0) {
+                                $controller->validationCommentaire($_GET['idcomments']);
+                                header('location:../public/homeback?back=homebackUpdate&idblogpost='.$_GET['idblogpost']);
+                            }
                             break;
                     }
                 }

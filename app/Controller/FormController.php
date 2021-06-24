@@ -61,7 +61,25 @@ class FormController{
                 $entity->hydrate($tab);
                 $model = new CommentModel();
                 $model->create($entity);
-                header('location:../public/homeback?back=homeback');
+                /*var_dump($model->create($entity));
+                var_dump($entity);
+                var_dump($model);
+                die();*/
+                header('location:../public/post?idblogpost='.$tab['blogpost_idblogpost']);
+                break;
+
+            case 'contact': // A BRANCHER
+                $to      = 'k.fardeau123@gmail.com';
+                $subject = 'Formaulaire de contact : '.$tab['name'];
+                $message = $tab['contenu'];
+                $headers = array(
+                    'From' => $tab['mail'],
+                    'Reply-To' => $tab['mail'],
+                    'X-Mailer' => 'PHP/' . phpversion()
+                );
+                mail($to, $subject, $message, $headers);
+
+                header('location:../public/home');
                 break;
         }
     }

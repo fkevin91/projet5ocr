@@ -17,8 +17,8 @@ class Comment {
     if($data == false){
       return;
     }
-    if(!array_key_exists('idComments', $data)){
-      $data['idComments']=0;
+    if(!array_key_exists('idcomments', $data)){
+      $data['idcomments']=0;
     }
     if(!array_key_exists('date', $data)){
       $data['date']= null;
@@ -26,7 +26,7 @@ class Comment {
     if(!array_key_exists('isApprouve', $data)){
       $data['isApprouve']=0;
     }
-    $this->set_idComments($data['idComments']);
+    $this->set_idComments($data['idcomments']);
     $this->set_date($data['date']);
     $this->set_contenu($data['contenu']);
     $this->set_isApprouve($data['isApprouve']);

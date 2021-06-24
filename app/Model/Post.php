@@ -10,7 +10,6 @@ class Post extends Model{
             $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
             $stmt->execute();
         }
-
         /** Récupére la liste des posts sous forme d'un tableau */
         function all()
         {
@@ -25,7 +24,6 @@ class Post extends Model{
             }
             return $posts;        
         }
-
         /** Récupére la liste des posts sous forme d'un tableau */
         function allForUser($userId)
         {
@@ -42,7 +40,21 @@ class Post extends Model{
             }
             return $post;
         }
-
+        /** Récupére la liste des posts sous forme d'un tableau */
+        function listPostAutorise($userId)
+        {
+            $sql="SELECT idblogpost from blogpost where user_iduser=:user";
+            $stmt=self::$connexion->prepare($sql);
+            $stmt->bindParam(':user', $userId, \PDO::PARAM_INT);
+            $stmt->execute();
+            $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            $post = [];
+            foreach($data as $entity){
+                $item = $entity['idblogpost'];
+                array_push($post, $item);
+            }
+            return $post;
+        }
         /** Récupére un post à partir de son ID */
         function find($id)
         {
@@ -94,13 +106,4 @@ class Post extends Model{
             );
         }
 
-        public function getInstances(array $data, string $class = ""):array
-     {
-          if ( $class === "" ) $class = $this->class; 
-          $result = [];
-          foreach ( $data as $key => $value ) {
-               $result[$key] = new $class($value); 
-          }
-          return $result;
-     }
 }
