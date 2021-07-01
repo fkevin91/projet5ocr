@@ -2,6 +2,7 @@
 require_once '../vendor/autoload.php';
 require_once '../app/controller/Controller.php';
 session_start();
+
 $arrayPage = array(
     'post', 
     'home', 
@@ -14,6 +15,7 @@ $arrayPage = array(
 $arrayPageSecure = array(
     'homeback',
     'homebackAdd',
+    'homebackDel',
     'homebackList',
     'homebackUpdate',
     'homebackCommentValid',
@@ -91,8 +93,21 @@ if (in_array($post, $arrayPage)) {
                             $controller->displayBackAddPost();
                             // ok
                             break;
+                        case 'homebackDel':
+                            if (isset($_GET['idblogpost']) && $_GET['idblogpost'] >= 0) {
+                                $controller->DeletePostWithComments($_GET['idblogpost']);
+                            }
+                            else {
+                                header('location:../public/homeback?back=homebackList');
+                            }
+                            break;
                         case 'homebackList':
-                            $controller->displayBackListPost($_SESSION);
+                            if($_SESSION['Auth']['role'] == 'admin'){
+                                $controller->ListPostAdmin();
+                            }
+                            if($_SESSION['Auth']['role'] == 'user'){
+                                $controller->displayBackListPost($_SESSION);
+                            }
                             break;
                         case 'homebackUpdate':
                             if (isset($_GET['idblogpost']) && $_GET['idblogpost'] >= 0) {

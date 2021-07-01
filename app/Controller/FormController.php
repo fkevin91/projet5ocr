@@ -49,6 +49,11 @@ class FormController{
                 $result = $model->check($entity);
                 if(isset($result)){
                     $_SESSION['Auth'] = $result;
+                    $_SESSION['Auth']['role'] = 'user';
+                    if($_SESSION['Auth']['pseudo'] == 'admin'&& $_SESSION['Auth']['iduser'] == 1){
+                        $_SESSION['Auth']['role'] = 'admin';
+                    }
+
                     header('location:../public/homeback?back=homeback');
                 }
                 if(!isset($result)){
