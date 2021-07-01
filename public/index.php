@@ -73,7 +73,7 @@ if (in_array($post, $arrayPage)) {
             break;
         case 'form':
             if (!empty($_POST['formulaire'])){
-                $controller->recuperation_du_formulaire($_POST);
+                $controller->recuperationDuFormulaire($_POST);
             }else{
                 header('location:../public/home');
             }

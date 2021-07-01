@@ -24,7 +24,7 @@ class PostController extends Controller {
                     'comments'=> $comments,
                 ));
         } catch (\Exception $e) {
-            die ('ERROR: ' . $e->getMessage());
+            // die ('ERROR: ' . $e->getMessage());
         }
     }
     public function displayListPost() { // ok
@@ -38,7 +38,7 @@ class PostController extends Controller {
                 'listpost' => $listpost,
             ));
         } catch (\Exception $e) {
-            die ('ERROR: ' . $e->getMessage());
+            // die ('ERROR: ' . $e->getMessage());
         }
     }
 }

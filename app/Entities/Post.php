@@ -3,12 +3,12 @@ namespace App\Entities;
 use App\Model\Post as PostModel;
 class Post {
   // Properties
-  private $id;
+  private $idr;
   private $titre;
   private $contenu;
   private $auteur;
   private $date;
-  private $photo_url;
+  private $photoUrl;
 
   // Methods
   public function __get($name)
@@ -17,27 +17,27 @@ class Post {
     return $this->$method();
   }
   
-  public function set_id($id)
+  public function setId($idr)
   {
-    $this->id = $id;
+    $this->idr = $idr;
   }
-  public function set_titre($titre)
+  public function setTitre($titre)
   {
     $this->titre = $titre;
   }
-  public function set_contenu($contenu)
+  public function setContenu($contenu)
   {
     $this->contenu = $contenu;
   }
-  public function set_photo_url($photo_url)
+  public function setPhotoUrl($photoUrl)
   {
-    $this->photo_url = $photo_url;
+    $this->photoUrl = $photoUrl;
   }
-  public function set_date($date)
+  public function setDate($date)
   {
     $this->date = $date;
   }
-  public function set_auteur($auteur)
+  public function setAuteur($auteur)
   {
     $this->auteur = $auteur;
   }
@@ -52,7 +52,7 @@ class Post {
     $model->create(
       $this->get_titre(),
       $this->get_contenu(),
-      $this->get_photo_url(), // ne peut etre nul
+      $this->get_photoUrl(), // ne peut etre nul
       $this->get_date(),
       $this->get_auteur()
     );
@@ -65,15 +65,15 @@ class Post {
    *
    * @return id du blogpost
    */
-  public function get_id() {
-    return $this->id;
+  public function getId() {
+    return $this->idr;
   }
   /**
    * get_titre
    *
    * @return titre du blogpost
    */
-  public function get_titre() {
+  public function getTitre() {
     return $this->titre;
   }
   
@@ -82,7 +82,7 @@ class Post {
    *
    * @return contenu du blogpost
    */
-  public function get_contenu() {
+  public function getContenu() {
     return $this->contenu;
   }
   
@@ -91,7 +91,7 @@ class Post {
    *
    * @return auteur du blogpost
    */
-  public function get_auteur() {
+  public function getAuteur() {
     return $this->auteur;
   }
   
@@ -100,17 +100,17 @@ class Post {
    *
    * @return date du blogpost
    */
-  public function get_date() {
+  public function getDate() {
     return $this->date;
   }
   
   /**
-   * get_photo_url
+   * get_photoUrl
    *
    * @return chemin d'acces de la photo du blogpost
    */
-  public function get_photo_url() {
-    return $this->photo_url;
+  public function getPhotoUrl() {
+    return $this->photoUrl;
   }
   
 
@@ -121,11 +121,11 @@ class Post {
     if(!array_key_exists('idblogpost', $data)){
       $data['idblogpost']=0;
     }
-    $this->set_id($data['idblogpost']);
-    $this->set_titre($data['titre']);
-    $this->set_contenu($data['contenu']);
-    $this->set_photo_url($data['photo_url']);
-    $this->set_date($data['date_creation']);
-    $this->set_auteur($data['user_iduser']);
+    $this->setId($data['idblogpost']);
+    $this->setTitre($data['titre']);
+    $this->setContenu($data['contenu']);
+    $this->setPhotoUrl($data['photo_url']);
+    $this->setDate($data['date_creation']);
+    $this->setAuteur($data['user_iduser']);
   }
 }

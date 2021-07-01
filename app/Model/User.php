@@ -11,11 +11,11 @@ class User extends Model{
             $stmt=self::$connexion->prepare($sql);
             $resultat = $stmt->execute(
                 [
-                    ':pseudo' => $entity->get_pseudo(),
-                    ':nom' => $entity->get_nom(),
-                    ':prenom' =>  $entity->get_prenom(),
-                    ':mail' => $entity->get_mail(),
-                    ':password' => sha1($entity->get_password()),
+                    ':pseudo' => $entity->getPseudo(),
+                    ':nom' => $entity->getNom(),
+                    ':prenom' =>  $entity->getPrenom(),
+                    ':mail' => $entity->getMail(),
+                    ':password' => sha1($entity->getPassword()),
                 ]
             );
             return $resultat;
@@ -23,10 +23,10 @@ class User extends Model{
     
         /** validation connexion */
         function check($entity){
-            $pass = sha1($entity->get_password());
+            $pass = sha1($entity->getPassword());
             $sql = "SELECT * FROM user WHERE pseudo = :pseudo AND password = :pass";
             $stmt=self::$connexion->prepare($sql);
-            $stmt->bindParam(':pseudo', $entity->get_pseudo());
+            $stmt->bindParam(':pseudo', $entity->getPseudo());
             $stmt->bindParam(':pass', $pass);
             $stmt->execute();
             $resultat = $stmt->fetch(\PDO::FETCH_ASSOC);

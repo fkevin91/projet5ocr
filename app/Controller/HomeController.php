@@ -8,7 +8,7 @@ class HomeController extends Controller{
             $template = $this->twig->load('index.html.twig');
             echo $template->render(array());
         } catch (\Exception $e) {
-            die ('ERROR: ' . $e->getMessage());
+            // die ('ERROR: ' . $e->getMessage());
         }
     }
 }

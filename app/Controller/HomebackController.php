@@ -13,7 +13,7 @@ class HomebackController extends Controller{
             $template = $this->twig->load('backof.html.twig');
             echo $template->render(array());
         } catch (\Exception $e) {
-            die ('ERROR: ' . $e->getMessage());
+            // die ('ERROR: ' . $e->getMessage());
         }
     }
     public function displayBackAddPost(){ 
@@ -21,7 +21,7 @@ class HomebackController extends Controller{
             $template = $this->twig->load('backaddpost.html.twig');
             echo $template->render(array());
         } catch (\Exception $e) {
-            die ('ERROR: ' . $e->getMessage());
+            // die ('ERROR: ' . $e->getMessage());
         }
     }
     public function displayBackListPost($tab){ 
@@ -35,21 +35,21 @@ class HomebackController extends Controller{
                 'listpost' => $listpost,
             ));
         } catch (\Exception $e) {
-            die ('ERROR: ' . $e->getMessage());
+            // die ('ERROR: ' . $e->getMessage());
         }
     }
     public function displayBackDelPost($idblogpost){ 
         try {
             (new PostModel())->delete($idblogpost);
         } catch (\Exception $e) {
-            die ('ERROR: ' . $e->getMessage());
+            // die ('ERROR: ' . $e->getMessage());
         }
     }
     public function validationCommentaire($idcomment){ 
         try {
             (new CommentModel())->validation($idcomment);
         } catch (\Exception $e) {
-            die ('ERROR: ' . $e->getMessage());
+            // die ('ERROR: ' . $e->getMessage());
         }
     }
     public function displayBackUpdatePost($idblogpost, $tab){ 
@@ -73,7 +73,7 @@ class HomebackController extends Controller{
                     'commentsnotvalide'=> $commentsnotvalide,
                 ));
         } catch (\Exception $e) {
-            die ('ERROR: ' . $e->getMessage());
+            // die ('ERROR: ' . $e->getMessage());
         }
     }
 }

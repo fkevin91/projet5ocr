@@ -7,20 +7,20 @@
   <div class="row gap-2 justify-content-md-center text-center">
     <div class="col-4 p-5  ">
         <h3 class="fs-3 ">Modifiez votre article</h3>
-        <img src="{{post.get_photo_url}}" width="250px" height="250px">
+        <img src="{{post.getPhotoUrl}}" width="250px" height="250px">
     </div>
     <div class="col-6 row gap-4">
         <form action="../public/form" method="post">
             <!-- titre input -->
             <div class="form-outline mb-4">
                 <label class="form-label pt-5" for="form4Example1">Modifiez votre titre :</label>
-                <input type="text" id="form4Example1" class="form-control" name="titre" value="{{post.get_titre}}" />
+                <input type="text" id="form4Example1" class="form-control" name="titre" value="{{post.getTitre}}" />
             </div>
 
             <!-- contenu input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="form4Example3">Modifiez votre contenu : </label>
-                <textarea class="form-control" id="form4Example3" rows="4" name="contenu" >{{post.get_contenu}}</textarea>
+                <textarea class="form-control" id="form4Example3" rows="4" name="contenu" >{{post.getContenu}}</textarea>
             </div>
 
             <!-- photo input -->
@@ -29,11 +29,11 @@
                 <input type="file" id="form4Example2" class="form-control" name="photo_url" />
             </div>
             <div class="form-outline mb-4">
-            <input type="hidden" name="date_creation" value="{{post.get_date}}" >
-            <input type="hidden" name="user_iduser" value="{{post.get_auteur}}">
+            <input type="hidden" name="date_creation" value="{{post.getDate}}" >
+            <input type="hidden" name="user_iduser" value="{{post.getAuteur}}">
             </div>
-            <input type="hidden" name="idblogpost" value="{{post.get_id}}">
-            <input type="hidden" name="photo" value="{{post.get_photo_url}}">
+            <input type="hidden" name="idblogpost" value="{{post.getId}}">
+            <input type="hidden" name="photo" value="{{post.getPhotoUrl}}">
             <input type="hidden" name="formulaire" value="updatePost">
 
 
@@ -48,11 +48,11 @@
         {% for itemvalide in commentsvalide %}
             <div class="p-2 m-2">
                 <div class="d-flex justify-content-between">
-                    <h5>{{itemvalide.get_auteur}}</h5>
-                    {{itemvalide.get_date}}
+                    <h5>{{itemvalide.getAuteur}}</h5>
+                    {{itemvalide.getDate}}
                 </div>
                 <div class="ps-5">
-                {{itemvalide.get_contenu}}
+                {{itemvalide.getContenu}}
                 </div>
             </div>
             <hr class="featurette-divider">
@@ -64,13 +64,13 @@
         {% for itemnotvalide in commentsnotvalide %}
             <div class="p-2 m-2">
                 <div class="d-flex justify-content-between">
-                    <h5>{{itemnotvalide.get_auteur}}</h5>
-                    {{itemnotvalide.get_date}}
+                    <h5>{{itemnotvalide.getAuteur}}</h5>
+                    {{itemnotvalide.getDate}}
                 </div>
                 <div class="ps-5">
-                    {{itemnotvalide.get_contenu}}
+                    {{itemnotvalide.getContenu}}
                     <div class="d-flex justify-content-end">
-                        <a  href="homeback?back=homebackCommentValid&idcomments={{itemnotvalide.get_idComments}}&idblogpost={{itemnotvalide.get_blogpost}}" 
+                        <a  href="homeback?back=homebackCommentValid&idcomments={{itemnotvalide.getIdComments}}&idblogpost={{itemnotvalide.getBlogpost}}" 
                             type="button" class="btn btn-primary">Valider</a>
                     </div>
                 </div>

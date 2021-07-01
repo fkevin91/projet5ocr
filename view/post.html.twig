@@ -5,11 +5,11 @@
     <div class="container p-5">
         <div class="d-flex summary">
             <img class="summary-image img-suqare img-responsive pull-right" 
-            alt="Bootstrap template" src="{{post.get_photo_url}}" width="500px" height="500px">
+            alt="Bootstrap template" src="{{post.getPhotoUrl}}" width="500px" height="500px">
             <div class="p-4">
-                <h2 class="summary-heading"> {{post.get_titre}} </h2>
-                <p class="lead"> {{post.get_contenu}} </p>
-                <p>crée le {{post.get_date_creation}} par l'utilisateur n° {{post.get_auteur}}</p>
+                <h2 class="summary-heading"> {{post.getTitre}} </h2>
+                <p class="lead"> {{post.getContenu}} </p>
+                <p>crée le {{post.getDate}} par l'utilisateur n° {{post.getAuteur}}</p>
             </div>
         </div>
         <div class="p-5 m-5">
@@ -18,11 +18,11 @@
                 {% for item in comments %}
                     <div class="p-2 m-2">
                         <div class="d-flex justify-content-between">
-                            <h5>{{item.get_auteur}}</h5>
-                            {{item.get_date}}
+                            <h5>{{item.getAuteur}}</h5>
+                            {{item.getDate}}
                         </div>
                         <div class="ps-5">
-                        {{item.get_contenu}}
+                        {{item.getContenu}}
                         </div>
                     </div>
                     <hr class="featurette-divider">
@@ -45,8 +45,8 @@
                 </div>
 
                 <input type="hidden" name="formulaire" value="addComment">
-                <input type="hidden" name="blogpost_idblogpost" value="{{post.get_id}}">
-                <input type="hidden" name="user_iduser" value="{{post.get_auteur}}">
+                <input type="hidden" name="blogpost_idblogpost" value="{{post.getId}}">
+                <input type="hidden" name="user_iduser" value="{{post.getAuteur}}">
 
                 <!-- Submit button -->
                 <button type="submit" class="btn btn-primary btn-block m-2">Envoyé</button>

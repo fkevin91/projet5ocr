@@ -3,11 +3,11 @@ namespace App\Model;
 use App\Entities\Post as PostEntity;
 class Post extends Model{
 
-        function delete($id)
+        function delete($idr)
         {
             $sql="DELETE FROM blogpost where idblogpost=:id";
             $stmt=self::$connexion->prepare($sql);
-            $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+            $stmt->bindParam(':id', $idr, \PDO::PARAM_INT);
             $stmt->execute();
         }
         /** Récupére la liste des posts sous forme d'un tableau */
@@ -56,11 +56,11 @@ class Post extends Model{
             return $post;
         }
         /** Récupére un post à partir de son ID */
-        function find($id)
+        function find($idr)
         {
             $sql="SELECT * from blogpost where idblogpost=:id";
             $stmt=self::$connexion->prepare($sql);
-            $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+            $stmt->bindParam(':id', $idr, \PDO::PARAM_INT);
             $stmt->execute();
             $data = $stmt->fetch(\PDO::FETCH_ASSOC);
             $post = new PostEntity();
@@ -74,11 +74,11 @@ class Post extends Model{
                 $stmt=self::$connexion->prepare($sql);
                 $stmt->execute(
                     [
-                        ':titre' => $entity->get_titre(),
-                        ':contenu' => $entity->get_contenu(),
-                        ':photo_url' =>  $entity->get_photo_url(),
-                        ':date_creation' => $entity->get_date(),
-                        ':user_iduser' =>  $entity->get_auteur(),
+                        ':titre' => $entity->getTitre(),
+                        ':contenu' => $entity->getContenu(),
+                        ':photo_url' =>  $entity->getPhotoUrl(),
+                        ':date_creation' => $entity->getDate(),
+                        ':user_iduser' =>  $entity->getAuteur(),
                     ]
                 );
             }    
@@ -96,12 +96,12 @@ class Post extends Model{
             $stmt=self::$connexion->prepare($sql);
             $stmt->execute(
                 [
-                    ':titre' => $entity->get_titre(),
-                    ':contenu' => $entity->get_contenu(),
-                    ':photo_url' =>  $entity->get_photo_url(),
-                    ':date_creation' => $entity->get_date(),
-                    ':user_iduser' =>  $entity->get_auteur(),
-                    ':idblogpost' =>  $entity->get_id(),
+                    ':titre' => $entity->getTitre(),
+                    ':contenu' => $entity->getContenu(),
+                    ':photo_url' =>  $entity->getPhoto_url(),
+                    ':date_creation' => $entity->getDate(),
+                    ':user_iduser' =>  $entity->getAuteur(),
+                    ':idblogpost' =>  $entity->getId(),
                 ]
             );
         }

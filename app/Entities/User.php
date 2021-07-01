@@ -5,7 +5,7 @@ use App\Model\User as UserModel;
 
 class User {
   // Properties
-  private $id;
+  private $idr;
   private $pseudo;
   private $nom;
   private $prenom;
@@ -25,22 +25,22 @@ class User {
   } */
 
   //Setteurs
-  public function set_id($id){
-    $this->id = $id;
+  public function setId($idr){
+    $this->idr = $idr;
   }
-  public function set_pseudo($pseudo){
+  public function setPseudo($pseudo){
     $this->pseudo = $pseudo;
   }
-  public function set_nom($nom){
+  public function setNom($nom){
     $this->nom = $nom;
   }
-  public function set_prenom($prenom){
+  public function setPrenom($prenom){
     $this->prenom = $prenom;
   }
-  public function set_mail($mail){
+  public function setMail($mail){
     $this->mail = $mail;
   }
-  public function set_password($password){
+  public function setPassword($password){
     $this->password = $password;
   }
   
@@ -50,15 +50,15 @@ class User {
    *
    * @return id utilitateur
    */
-  public function get_id() {
-    return $this->id;
+  public function getId() {
+    return $this->idr;
   }
   /**
    * get_pseudo
    *
    * @return pseudo utilitateur
    */
-  public function get_pseudo() {
+  public function getPseudo() {
     return $this->pseudo;
   }
   /**
@@ -66,7 +66,7 @@ class User {
    *
    * @return nom utilisateur
    */
-  public function get_nom() {
+  public function getNom() {
     return $this->nom;
   }
   /**
@@ -74,7 +74,7 @@ class User {
    *
    * @return prenom utilisateur
    */
-  public function get_prenom() {
+  public function getPrenom() {
     return $this->prenom;
   }
   /**
@@ -82,7 +82,7 @@ class User {
    *
    * @return mail utilisateur
    */
-  public function get_mail() {
+  public function getMail() {
     return $this->mail;
   }
   /**
@@ -90,7 +90,7 @@ class User {
    *
    * @return password utilisateur
    */
-  public function get_password() {
+  public function getPassword() {
     return $this->password;
   }
 
@@ -102,19 +102,19 @@ class User {
     if(!array_key_exists('iduser', $data)){
       $data['iduser']=0;
     }
-    $this->set_id($data['iduser']);
-    $this->set_pseudo($data['pseudo']);
-    $this->set_nom($data['nom']);
-    $this->set_prenom($data['prenom']);
-    $this->set_mail($data['mail']);
-    $this->set_password($data['password']);
+    $this->setId($data['iduser']);
+    $this->setPseudo($data['pseudo']);
+    $this->setNom($data['nom']);
+    $this->setPrenom($data['prenom']);
+    $this->setMail($data['mail']);
+    $this->setPassword($data['password']);
   }
 
   public function securityPass($data){
     if($data == false){
       return;
     }
-    $this->set_pseudo($data['pseudo']);
-    $this->set_password($data['password']);
+    $this->setPseudo($data['pseudo']);
+    $this->setPassword($data['password']);
   }
 }

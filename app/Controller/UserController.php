@@ -9,7 +9,7 @@ class UserController extends Controller {
             $template = $this->twig->load('log.html.twig');
             echo $template->render(array());
         } catch (\Exception $e) {
-            die ('ERROR: ' . $e->getMessage());
+            // die ('ERROR: ' . $e->getMessage());
         }
     }
     public function displayRegistration() {
@@ -17,7 +17,7 @@ class UserController extends Controller {
             $template = $this->twig->load('registration.html.twig');
             echo $template->render(array());
         } catch (\Exception $e) {
-            die ('ERROR: ' . $e->getMessage());
+            // die ('ERROR: ' . $e->getMessage());
         }
     }
 }

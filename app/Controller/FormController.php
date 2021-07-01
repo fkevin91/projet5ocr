@@ -10,7 +10,7 @@ use App\Model\Comment as CommentModel;
 
 class FormController{
 
-    public function recuperation_du_formulaire($tab){
+    public function recuperationDuFormulaire($tab){
         switch ($tab['formulaire']){
             case 'addPost': // ok
                 $tab['date_creation']= date("Y-m-d H:i:s");

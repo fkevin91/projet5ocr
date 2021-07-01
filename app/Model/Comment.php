@@ -13,11 +13,11 @@ class Comment extends Model{
         return $stmt->execute(
             [
                 ':date' => date("Y-m-d H:i:s"),
-                ':contenu' => $entity->get_contenu(),
-                /*':isApprouve' =>  $entity->get_isApprouve(),*/
-                ':user_iduser' => $entity->get_user(),
-                ':blogpost_idblogpost' =>  $entity->get_blogpost(),
-                ':autheur' =>  $entity->get_auteur(),
+                ':contenu' => $entity->getContenu(),
+                /*':isApprouve' =>  $entity->getIsApprouve(),*/
+                ':user_iduser' => $entity->getUser(),
+                ':blogpost_idblogpost' =>  $entity->getBlogpost(),
+                ':autheur' =>  $entity->getAuteur(),
             ]
         );
     }
