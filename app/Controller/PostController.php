@@ -9,13 +9,13 @@ use App\Model\Comment as CommentModel;
 
 class PostController extends Controller {
 
-    public function displayPost($id) { // ok
+    public function displayPost($idr) { // ok
         try {
             $template = $this->twig->load('post.html.twig');
             $modelPost = new PostModel();
-            $post = $modelPost->find($id);
+            $post = $modelPost->find($idr);
             $modelComment = new CommentModel();
-            $comments = $modelComment->allByBlogPostIsApprouve($id);
+            $comments = $modelComment->allByBlogPostIsApprouve($idr);
             // var_dump($comments);
             $titre = "Post";
                 echo $template->render(array(
