@@ -75,11 +75,11 @@ class Comment extends Model{
         return $data;
     }
 
-    function delByIdComment($idComment)
+    function delByIdComment($idblogpost)
     {
-        $sql="DELETE FROM comments WHERE comments.idcomments = :idComment";
+        $sql="DELETE FROM comments WHERE comments.blogpost_idblogpost = :idblogpost";
         $stmt=self::$connexion->prepare($sql);
-        $stmt->bindParam(':idComment', $idComment, \PDO::PARAM_INT);
+        $stmt->bindParam(':idblogpost', $idblogpost, \PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }

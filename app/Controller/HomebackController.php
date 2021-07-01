@@ -24,6 +24,20 @@ class HomebackController extends Controller{
             // die ('ERROR: ' . $e->getMessage());
         }
     }
+    public function ListPostAdmin(){ 
+        try {
+            $template = $this->twig->load('backlistpost.html.twig');
+            $model = new PostModel();
+            $listpost = $model->all();
+            $titre = "listPost";
+            echo $template->render(array(
+                'titre' => $titre,
+                'listpost' => $listpost,
+            ));
+        } catch (\Exception $e) {
+            // die ('ERROR: ' . $e->getMessage());
+        }
+    }
     public function displayBackListPost($tab){ 
         try {
             $template = $this->twig->load('backlistpost.html.twig');
@@ -38,9 +52,11 @@ class HomebackController extends Controller{
             // die ('ERROR: ' . $e->getMessage());
         }
     }
-    public function displayBackDelPost($idblogpost){ 
+    public function DeletePostWithComments($idblogpost){ 
         try {
+            (new CommentModel())->delByIdComment($idblogpost);
             (new PostModel())->delete($idblogpost);
+            header('location:../public/homeback?back=homebackList');
         } catch (\Exception $e) {
             // die ('ERROR: ' . $e->getMessage());
         }
@@ -55,9 +71,11 @@ class HomebackController extends Controller{
     public function displayBackUpdatePost($idblogpost, $tab){ 
         try {
             $model = new PostModel();
-            $listpost = $model->listPostAutorise($tab['Auth']['iduser']);
-            if (!in_array($idblogpost, $listpost)){
-                header('location:../public/homeback?back=homeback');
+            if($tab['Auth']['iduser'] != 1){
+                $listpost = $model->listPostAutorise($tab['Auth']['iduser']);
+                if (!in_array($idblogpost, $listpost)){
+                    header('location:../public/homeback?back=homeback');
+                }
             }
             $template = $this->twig->load('backupdatepost.html.twig');
             $post = $model->find($idblogpost);
