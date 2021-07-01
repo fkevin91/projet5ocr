@@ -16,6 +16,7 @@ body {
 .carousel-item {
   height: 32rem;
 }
+
 .carousel-item > img {
   position: absolute;
   top: 0;
@@ -46,8 +47,6 @@ body {
   font-weight: 300;
   line-height: 1;
 }
-
-
 
 @media (min-width: 40em) {
   .carousel-caption p {

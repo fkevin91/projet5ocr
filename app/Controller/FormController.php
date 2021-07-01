@@ -51,7 +51,7 @@ class FormController{
                     $_SESSION['Auth'] = $result;
                     header('location:../public/homeback?back=homeback');
                 }
-                else{
+                if(!isset($result)){
                     header('location:../public/home');
                 }
                 break;
@@ -69,7 +69,7 @@ class FormController{
                 break;
 
             case 'contact': // A BRANCHER
-                $to      = 'k.fardeau123@gmail.com';
+                $too      = 'k.fardeau123@gmail.com';
                 $subject = 'Formaulaire de contact : '.$tab['name'];
                 $message = $tab['contenu'];
                 $headers = array(
@@ -77,7 +77,7 @@ class FormController{
                     'Reply-To' => $tab['mail'],
                     'X-Mailer' => 'PHP/' . phpversion()
                 );
-                mail($to, $subject, $message, $headers);
+                mail($too, $subject, $message, $headers);
 
                 header('location:../public/home');
                 break;

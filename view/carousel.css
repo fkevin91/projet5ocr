@@ -16,6 +16,7 @@ body {
 .carousel-item {
   height: 32rem;
 }
+
 .carousel-item > img {
   position: absolute;
   top: 0;
@@ -28,6 +29,7 @@ body {
   margin-bottom: 1.5rem;
   text-align: center;
 }
+
 .marketing h2 {
   font-weight: 400;
 }
@@ -36,7 +38,6 @@ body {
   margin-right: 0.75rem;
   margin-left: 0.75rem;
 }
-
 
 .featurette-divider {
   margin: 5rem 0; 
