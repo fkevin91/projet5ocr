@@ -12,7 +12,7 @@ class ContactController extends Controller {
                 'titre' => $titre,
             ));
         } catch (\Exception $e) {
-            die ('ERROR: ' . $e->getMessage());
+            // die ('ERROR: ' . $e->getMessage());
         }
     }
 }
