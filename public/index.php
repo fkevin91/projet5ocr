@@ -3,6 +3,7 @@ require_once '../vendor/autoload.php';
 require_once '../app/controller/Controller.php';
 session_start();
 
+
 $arrayPage = array(
     'post', 
     'home', 
@@ -75,7 +76,7 @@ if (in_array($post, $arrayPage)) {
             break;
         case 'form':
             if (!empty($_POST['formulaire'])){
-                $controller->recuperationDuFormulaire($_POST);
+                $controller->recuperationDuFormulaire($_POST, $_FILES);
             }else{
                 header('location:../public/home');
             }

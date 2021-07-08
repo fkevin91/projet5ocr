@@ -8,7 +8,7 @@
         <img src="" alt="">
     </div>
     <div class="col-6 row gap-4">
-        <form action="../public/form" method="post">
+        <form action="../public/form" method="post" enctype="multipart/form-data">
             <!-- titre input -->
             <div class="form-outline mb-4">
                 <label class="form-label pt-5" for="form4Example1">Titre :</label>
@@ -23,8 +23,8 @@
 
             <!-- photo input -->
             <div class="form-outline mb-4">
-                <label class="form-label" for="form4Example2">Ajouter une photo : </label>
-                <input type="file" name="photo_url" id="form4Example2" class="form-control" />
+                <label class="form-label" for="photo_url">Ajouter une photo : </label>
+                <input type="file" name="photo_url" id="photo_url" class="form-control" />
             </div>
 
             <input type="hidden" name="formulaire" value="addPost">
