@@ -43,11 +43,13 @@ class FormController{
                     $image = $fichier['photo_url']['tmp_name'];
                     $cheminEtNomDefinitif = '../public/upload/'.$fichier['photo_url']['name'];
                     $this->controle($image,$cheminEtNomDefinitif);
-                    $tab['date_creation']= date("d-m-Y");
+                    $tab['date_creation']= date("Y-m-d");
                     $tab['user_iduser']= $_SESSION['Auth']['iduser'];
                     $tab['photo_url'] = $cheminEtNomDefinitif;
                     $entity =new Post();
                     $entity->hydrate($tab);
+
+
                     $model = new PostModel();
                     $model->create($entity);
                     header('location:../public/homeback?back=homeback');

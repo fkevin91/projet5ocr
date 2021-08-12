@@ -125,8 +125,8 @@ class Post {
     $this->setTitre($data['titre']);
     $this->setContenu($data['contenu']);
     $this->setPhotoUrl($data['photo_url']);
-    $date = date_create($data['date_creation']);
-    $this->setDate(date_format($date, 'd-m-Y'));
+    $date = $data['date_creation'];
+    $this->setDate($date);
     $this->setAuteur($data['user_iduser']);
   }
 }

@@ -69,6 +69,7 @@ class Post extends Model{
         }
         /** Ajoute un post à la table blogpost */
         function create($entity){
+
                 $sql = "INSERT INTO 
                             blogpost(   idblogpost, 
                                         titre, 

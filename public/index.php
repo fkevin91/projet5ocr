@@ -2,9 +2,9 @@
 require_once '../vendor/autoload.php';
 require_once '../app/controller/Controller.php';
 session_start();
-var_dump($_SESSION);
-var_dump($_POST);
-var_dump($_FILES);
+// var_dump($_SESSION);
+// var_dump($_POST);
+// var_dump($_FILES);
 
 
 $arrayPage = array(
