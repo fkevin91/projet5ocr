@@ -12,3 +12,5 @@ ouvrir la console :
 ````
 gh repo clone fkevin91/projet5ocr
 ````
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/367ce5e0e090463bb6ef7a5163636c45)](https://www.codacy.com/gh/fkevin91/projet5ocr/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=fkevin91/projet5ocr&amp;utm_campaign=Badge_Grade)
