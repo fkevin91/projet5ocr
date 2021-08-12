@@ -36,20 +36,24 @@ class FormController{
         return $message;
     }
     
-    public function recuperationDuFormulaire($tab,$fichier){
+    public function recuperationDuFormulaire($tab, $fichier, $token){
         switch ($tab['formulaire']){
             case 'addPost': // ok
-                $image = $fichier['photo_url']['tmp_name'];
-                $cheminEtNomDefinitif = '../public/upload/'.$fichier['photo_url']['name'];
-                $this->controle($image,$cheminEtNomDefinitif);
-                $tab['date_creation']= date("d-m-Y");
-                $tab['user_iduser']= $_SESSION['Auth']['iduser'];
-                $tab['photo_url'] = $cheminEtNomDefinitif;
-                $entity =new Post();
-                $entity->hydrate($tab);
-                $model = new PostModel();
-                $model->create($entity);
-                header('location:../public/homeback?back=homeback');
+                if(sha1($token) === $tab['token']){
+                    $image = $fichier['photo_url']['tmp_name'];
+                    $cheminEtNomDefinitif = '../public/upload/'.$fichier['photo_url']['name'];
+                    $this->controle($image,$cheminEtNomDefinitif);
+                    $tab['date_creation']= date("d-m-Y");
+                    $tab['user_iduser']= $_SESSION['Auth']['iduser'];
+                    $tab['photo_url'] = $cheminEtNomDefinitif;
+                    $entity =new Post();
+                    $entity->hydrate($tab);
+                    $model = new PostModel();
+                    $model->create($entity);
+                    header('location:../public/homeback?back=homeback');
+                }else{
+                    header('location:../public/home?log=false');
+                }
                 break;
         
             case 'updatePost': // ok

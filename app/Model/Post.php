@@ -69,8 +69,22 @@ class Post extends Model{
         }
         /** Ajoute un post à la table blogpost */
         function create($entity){
-                $sql = "INSERT INTO blogpost(idblogpost, titre, contenu,photo_url,date_creation,user_iduser) 
-                    VALUES (NULL, :titre, :contenu, :photo_url, :date_creation, :user_iduser)";
+                $sql = "INSERT INTO 
+                            blogpost(   idblogpost, 
+                                        titre, 
+                                        contenu,
+                                        photo_url,
+                                        date_creation,
+                                        user_iduser
+                        ) 
+                        VALUES (
+                            NULL, 
+                            :titre, 
+                            :contenu, 
+                            :photo_url, 
+                            :date_creation, 
+                            :user_iduser
+                        )";
                 $stmt=self::$connexion->prepare($sql);
                 $stmt->execute(
                     [
@@ -81,7 +95,7 @@ class Post extends Model{
                         ':user_iduser' =>  $entity->getAuteur(),
                     ]
                 );
-            }    
+        }    
         
         /** Mettre a jour un post à la table blogpost */
         function update($entity)

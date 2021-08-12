@@ -16,10 +16,12 @@ class HomebackController extends Controller{
             // die ('ERROR: ' . $e->getMessage());
         }
     }
-    public function displayBackAddPost(){ 
+    public function displayBackAddPost($token){ 
         try {
             $template = $this->twig->load('backaddpost.html.twig');
-            echo $template->render(array());
+            echo $template->render(array(
+                'token' => $token
+            ));
         } catch (\Exception $e) {
             // die ('ERROR: ' . $e->getMessage());
         }

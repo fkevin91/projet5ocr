@@ -7,17 +7,30 @@ use App\Entities\Comment as CommentEntity;
 class Comment extends Model{
 
     function create($entity){
-        $sql = "INSERT INTO comments(idcomments, date, contenu, isApprouve, user_iduser, blogpost_idblogpost, autheur) 
-        VALUES (NULL, :date,:contenu, 0,:user_iduser,:blogpost_idblogpost,:autheur)";
+        $sql = "INSERT INTO comments(
+                    idcomments, 
+                    date, 
+                    contenu, 
+                    isApprouve, 
+                    user_iduser, 
+                    blogpost_idblogpost, 
+                    autheur) 
+                VALUES (
+                    NULL, 
+                    :date,
+                    :contenu, 
+                    0,
+                    :user_iduser,
+                    :blogpost_idblogpost,
+                    :autheur)";
         $stmt=self::$connexion->prepare($sql);
         return $stmt->execute(
             [
                 ':date' => date("Y-m-d H:i:s"),
-                ':contenu' => $entity->getContenu(),
-                /*':isApprouve' =>  $entity->getIsApprouve(),*/
-                ':user_iduser' => $entity->getUser(),
-                ':blogpost_idblogpost' =>  $entity->getBlogpost(),
-                ':autheur' =>  $entity->getAuteur(),
+                ':contenu' => strip_tags($entity->getContenu()),
+                ':user_iduser' => strip_tags($entity->getUser()),
+                ':blogpost_idblogpost' =>  strip_tags($entity->getBlogpost()),
+                ':autheur' =>  strip_tags($entity->getAuteur()),
             ]
         );
     }

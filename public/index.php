@@ -2,6 +2,9 @@
 require_once '../vendor/autoload.php';
 require_once '../app/controller/Controller.php';
 session_start();
+var_dump($_SESSION);
+var_dump($_POST);
+var_dump($_FILES);
 
 
 $arrayPage = array(
@@ -56,6 +59,7 @@ if (in_array($post, $arrayPage)) {
             break;
         case 'home':
             if (!empty($_GET['log']) && $_GET['log'] == 'false') {
+                session_unset();
                 session_destroy();
                 $controller->displayHome();
             }
@@ -76,7 +80,7 @@ if (in_array($post, $arrayPage)) {
             break;
         case 'form':
             if (!empty($_POST['formulaire'])){
-                $controller->recuperationDuFormulaire($_POST, $_FILES);
+                $controller->recuperationDuFormulaire($_POST, $_FILES, $_SESSION['Auth']['iduser']);
             }else{
                 header('location:../public/home');
             }
@@ -91,7 +95,7 @@ if (in_array($post, $arrayPage)) {
                             // ok
                             break;
                         case 'homebackAdd':
-                            $controller->displayBackAddPost();
+                            $controller->displayBackAddPost(sha1($_SESSION['Auth']['iduser']));
                             // ok
                             break;
                         case 'homebackDel':

@@ -23,35 +23,13 @@ class User extends Model{
     
         /** validation connexion */
         function check($entity){
-            $pass = sha1($entity->getPassword());
+            $pass = sha1(strip_tags($entity->getPassword()));
             $sql = "SELECT * FROM user WHERE pseudo = :pseudo AND password = :pass";
             $stmt=self::$connexion->prepare($sql);
-            $stmt->bindParam(':pseudo', $entity->getPseudo());
+            $stmt->bindParam(':pseudo', strip_tags($entity->getPseudo()));
             $stmt->bindParam(':pass', $pass);
             $stmt->execute();
             $resultat = $stmt->fetch(\PDO::FETCH_ASSOC);
             return $resultat;
         }
-
-        /*function get_user($pseudo){
-            $sql = "SELECT * FROM user WHERE pseudo = :pseudo ";
-            $stmt=self::$connexion->prepare($sql);
-            $stmt->bindParam(':pseudo', $pseudo);
-            $stmt->bindParam(':pass', $password);
-            $stmt->execute();
-            $resultat = $stmt->fetchAll(\PDO::FETCH_OBJ);
-
-            if($resultat){
-                $_SESSION['Auth'] = array(
-                    'login' => $pseudo,
-                    'pass' => $password,
-                    'role' => ''
-                );
-                return true;
-            }
-            else {
-                return false;
-            }
-        }*/
-
 }
