@@ -24,7 +24,7 @@ class Post extends Model{
             }
             return $posts;        
         }
-        /** Récupére la liste des posts sous forme d'un tableau */
+        /** Récupére la liste des posts sous forme d'un tableau pour un utilisateur */
         function allForUser($userId)
         {
             $sql="SELECT * from blogpost where user_iduser=:user";
@@ -40,7 +40,7 @@ class Post extends Model{
             }
             return $post;
         }
-        /** Récupére la liste des posts sous forme d'un tableau */
+        /** Vérifie la liste des posts autorisé par un utilisateur */
         function listPostAutorise($userId)
         {
             $sql="SELECT idblogpost from blogpost where user_iduser=:user";
@@ -97,7 +97,6 @@ class Post extends Model{
                     ]
                 );
         }    
-        
         /** Mettre a jour un post à la table blogpost */
         function update($entity)
         {
@@ -120,5 +119,4 @@ class Post extends Model{
                 ]
             );
         }
-
 }
