@@ -1,18 +1,17 @@
 <?php
 namespace App\Model;
 
+use App\DevCoder\DotEnv;
+
+(new DotEnv(__DIR__ . '/../../.env'))->load();
+
 class Model {
     protected static $connexion=null;
-    private $dbserver = 'localhost';
-    private $dbname = 'projet5';
-    private $dbuser = 'root';
-    private $dbpass = '';
-
     function __construct(){
-        $dsn="mysql:dbname=".$this->dbname.";host=".$this->dbserver;
+        $dsn="mysql:dbname=".getenv('DB_NAME').";host=".getenv('DB_SERVER');
         if(self::$connexion == null)
         try{
-                self::$connexion=new \PDO($dsn,$this->dbuser,$this->dbpass);
+                self::$connexion=new \PDO($dsn,getenv('DB_USER'),getenv('DB_PASS'));
             }
         catch(\PDOException $e){
             printf("Échec de la connexion : %s\n", $e->getMessage());
