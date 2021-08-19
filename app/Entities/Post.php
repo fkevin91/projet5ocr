@@ -10,13 +10,29 @@ class Post {
   private $date;
   private $photoUrl;
 
+  //Hydrate
+  public function hydrate($data){
+    if($data == false){
+      return;
+    }
+    if(!array_key_exists('idblogpost', $data)){
+      $data['idblogpost']=0;
+    }
+    $this->setId($data['idblogpost']);
+    $this->setTitre($data['titre']);
+    $this->setContenu($data['contenu']);
+    $this->setPhotoUrl($data['photo_url']);
+    $date = $data['date_creation'];
+    $this->setDate($date);
+    $this->setAuteur($data['user_iduser']);
+  }
+
   // Methods
   public function __get($name)
   {
     $method = 'get_'.$name;
     return $this->$method();
   }
-  
   public function setId($idr)
   {
     $this->idr = $idr;
@@ -41,25 +57,6 @@ class Post {
   {
     $this->auteur = $auteur;
   }
-
-  
-  /**
-   * set_blogpost
-   *
-   */
-  /* public function create() {
-    $model = new PostModel();
-    $model->create(
-      $this->get_titre(),
-      $this->get_contenu(),
-      $this->get_photoUrl(), // ne peut etre nul
-      $this->get_date(),
-      $this->get_auteur()
-    );
-  } */
-
-
-
   /**
    * get_id
    *
@@ -76,7 +73,6 @@ class Post {
   public function getTitre() {
     return $this->titre;
   }
-  
   /**
    * get_contenu
    *
@@ -85,7 +81,6 @@ class Post {
   public function getContenu() {
     return $this->contenu;
   }
-  
   /**
    * get_auteur
    *
@@ -94,7 +89,6 @@ class Post {
   public function getAuteur() {
     return $this->auteur;
   }
-  
   /**
    * get_date
    *
@@ -103,7 +97,6 @@ class Post {
   public function getDate() {
     return $this->date;
   }
-  
   /**
    * get_photoUrl
    *
@@ -111,22 +104,5 @@ class Post {
    */
   public function getPhotoUrl() {
     return $this->photoUrl;
-  }
-  
-
-  public function hydrate($data){
-    if($data == false){
-      return;
-    }
-    if(!array_key_exists('idblogpost', $data)){
-      $data['idblogpost']=0;
-    }
-    $this->setId($data['idblogpost']);
-    $this->setTitre($data['titre']);
-    $this->setContenu($data['contenu']);
-    $this->setPhotoUrl($data['photo_url']);
-    $date = $data['date_creation'];
-    $this->setDate($date);
-    $this->setAuteur($data['user_iduser']);
   }
 }
