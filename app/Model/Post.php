@@ -112,7 +112,7 @@ class Post extends Model{
                 [
                     ':titre' => $entity->getTitre(),
                     ':contenu' => $entity->getContenu(),
-                    ':photo_url' =>  $entity->getPhoto_url(),
+                    ':photo_url' =>  $entity->getPhotoUrl(),
                     ':date_creation' => $entity->getDate(),
                     ':user_iduser' =>  $entity->getAuteur(),
                     ':idblogpost' =>  $entity->getId(),
